@@ -14,7 +14,7 @@ AccountTypeChoices = (
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    account_type = models.CharField('AccountTypeChooice', choices=AccountTypeChoices)
+    account_type = models.CharField(max_length=250, choices=AccountTypeChoices)
     creation_date = models.DateTimeField(auto_now_add=True)
     director_profile = models.ForeignKey('DirectorProfile', on_delete=models.SET_NULL, null=True)
     student_profile = models.ForeignKey('StudentProfile', on_delete=models.SET_NULL, null=True)
