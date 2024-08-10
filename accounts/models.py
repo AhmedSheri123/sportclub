@@ -37,12 +37,15 @@ class DirectorProfile(models.Model):
 
 
 class StudentProfile(models.Model):
+    
     full_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     birthday = models.DateField()
     has_subscription = models.BooleanField(default=False)
     subscription_start_date = models.DateTimeField()
     subscription_end_date = models.DateTimeField()
+
+    club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
 
@@ -50,4 +53,5 @@ class CoachProfile(models.Model):
     full_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     stadium = models.CharField(max_length=50)
+    club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
