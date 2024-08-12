@@ -13,98 +13,33 @@
     <ul
       class="bg-white rounded-lg shadow-lg overflow-hidden divide-y divide-gray-200"
     >
-      <li class="p-4 hover:bg-gray-50 transition duration-150 ease-in-out">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between"
-        >
-          <div class="mb-2 md:mb-0">
-            <h2 class="text-lg font-semibold text-gray-900">نادي الرياض</h2>
-            <p class="text-sm text-gray-600">الرياض - العليا</p>
-          </div>
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm text-gray-500">01/01/2023</span>
-            <a
-              href="#"
-              class="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
-              >تعديل</a
-            >
-            <a
-              href="#"
-              class="text-red-600 hover:text-red-800 text-sm font-medium"
-              >حذف</a
-            >
-          </div>
+
+    {% for club in clubs %}
+    <li class="p-4 hover:bg-gray-50 transition duration-150 ease-in-out">
+      <div
+        class="flex flex-col md:flex-row md:items-center md:justify-between"
+      >
+        <div class="mb-2 md:mb-0">
+          <h2 class="text-lg font-semibold text-gray-900">{{club.name}}</h2>
+          <p class="text-sm text-gray-600">{{club.get_city_display}} - {{club.district}}</p>
         </div>
-      </li>
-      <li class="p-4 hover:bg-gray-50 transition duration-150 ease-in-out">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between"
-        >
-          <div class="mb-2 md:mb-0">
-            <h2 class="text-lg font-semibold text-gray-900">نادي جدة</h2>
-            <p class="text-sm text-gray-600">جدة - الحمراء</p>
-          </div>
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm text-gray-500">15/03/2023</span>
-            <a
-              href="#"
-              class="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
-              >تعديل</a
-            >
-            <a
-              href="#"
-              class="text-red-600 hover:text-red-800 text-sm font-medium"
-              >حذف</a
-            >
-          </div>
+        <div class="flex items-center space-x-2 rtl:space-x-reverse">
+          <span class="text-sm text-gray-500">{{district.creation_date}}</span>
+          <a
+            href="{% url 'editClub' club.id %}"
+            class="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
+            >تعديل</a
+          >
+          <a
+            href="{% url 'deleteClub' club.id %}"
+            class="text-red-600 hover:text-red-800 text-sm font-medium"
+            >حذف</a
+          >
         </div>
-      </li>
-      <li class="p-4 hover:bg-gray-50 transition duration-150 ease-in-out">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between"
-        >
-          <div class="mb-2 md:mb-0">
-            <h2 class="text-lg font-semibold text-gray-900">نادي جدة</h2>
-            <p class="text-sm text-gray-600">جدة - الحمراء</p>
-          </div>
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm text-gray-500">15/03/2023</span>
-            <a
-              href="#"
-              class="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
-              >تعديل</a
-            >
-            <a
-              href="#"
-              class="text-red-600 hover:text-red-800 text-sm font-medium"
-              >حذف</a
-            >
-          </div>
-        </div>
-      </li>
-      <li class="p-4 hover:bg-gray-50 transition duration-150 ease-in-out">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between"
-        >
-          <div class="mb-2 md:mb-0">
-            <h2 class="text-lg font-semibold text-gray-900">نادي جدة</h2>
-            <p class="text-sm text-gray-600">جدة - الحمراء</p>
-          </div>
-          <div class="flex items-center space-x-2 rtl:space-x-reverse">
-            <span class="text-sm text-gray-500">15/03/2023</span>
-            <a
-              href="#"
-              class="text-indigo-600 hover:text-indigo-800 text-sm font-medium"
-              >تعديل</a
-            >
-            <a
-              href="#"
-              class="text-red-600 hover:text-red-800 text-sm font-medium"
-              >حذف</a
-            >
-          </div>
-        </div>
-      </li>
+      </div>
+    </li>
+
+    {% endfor %}
       <!-- Add more list items as needed -->
     </ul>
   </div>
