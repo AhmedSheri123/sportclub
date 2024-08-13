@@ -1,4 +1,6 @@
-{% extends "base_landing.html" %} {% block content %}
+{% extends "base_landing.html" %} {% load static %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/landing.css' %}" />
+
 <main class="bg-white text-gray-900">
   <!-- Hero Section -->
   <section class="overflow-hidden bg-indigo-50">
@@ -6,7 +8,7 @@
       class="flex flex-col lg:min-h-[800px] lg:flex-row-reverse lg:items-stretch"
     >
       <div
-        class="relative flex w-full items-center justify-center lg:order-2 lg:w-7/12"
+        class="relative flex w-full items-center justify-center lg:order-2 lg:w-7/12 box"
       >
         <div
           class="relative px-4 pb-16 pt-10 text-center sm:px-6 md:px-24 lg:py-12 lg:text-right 2xl:px-32"
@@ -71,7 +73,7 @@
     >
       <div class="flex flex-col items-start justify-start gap-8">
         {% for bullet in bullets %}
-        <div class="flex flex-row items-center justify-center gap-4">
+        <div class="flex flex-row items-center justify-center gap-4 box">
           <div
             class="flex h-16 w-16 items-center justify-center rounded-full bg-indigo-600"
           >
@@ -102,7 +104,7 @@
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         {% for service in services %}
         <div
-          class="rounded-lg bg-white p-6 text-center shadow-lg transition-all duration-300 hover:bg-indigo-100"
+          class="rounded-lg bg-white p-6 text-center shadow-lg transition-all duration-300 hover:bg-indigo-100 box"
         >
           <div class="mb-4 flex justify-center text-4xl">
             <i class="{{ service.icon }}"></i>
@@ -125,7 +127,7 @@
       </h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         {% for plan in pricing %}
-        <div class="overflow-hidden rounded-lg bg-white shadow-lg">
+        <div class="overflow-hidden rounded-lg bg-white shadow-lg box">
           <div class="border-b border-gray-200 p-6">
             <h3 class="mb-2 text-2xl font-bold text-indigo-900">
               {{ plan.name }}
@@ -159,7 +161,7 @@
   <!-- Call to Action Section -->
   <section class="bg-indigo-50 px-2 py-20 text-white">
     <div
-      class="container mx-auto rounded-lg border border-indigo-200 bg-white p-4 text-center lg:p-20"
+      class="container mx-auto rounded-lg border border-indigo-200 bg-white p-4 text-center lg:p-20 box"
     >
       <h2 class="mb-6 text-xl font-bold text-indigo-600 lg:text-4xl">
         ابدأ في تنظيم فريقك اليوم
@@ -176,4 +178,5 @@
   </section>
 </main>
 
+<script src="{% static 'js/landing.js' %}"></script>
 {% endblock content %}
