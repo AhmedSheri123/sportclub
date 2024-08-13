@@ -10,11 +10,17 @@ from django.contrib.admin.models import LogEntry
 # Create your views here.
 
 def index(request):
-    userprofile = UserProfile.objects.filter(account_type='2')
-    clubs = ClubsModel.objects.all()
-    directors = DirectorProfile.objects.all()
+    user = request.user
+    if user.is_authenticated:
+        if user.userprofile.account_type == '1':
+                    
+            userprofile = UserProfile.objects.filter(account_type='2')
+            clubs = ClubsModel.objects.all()
+            directors = DirectorProfile.objects.all()
 
-    return render(request, 'admin_dashboard/index.html', {'userprofile':userprofile, 'clubs':clubs, 'directors':directors})
+            return render(request, 'admin_dashboard/index.html', {'userprofile':userprofile, 'clubs':clubs, 'directors':directors})
+    return redirect('landingIndex')
+
 
 def addClub(request):
     form = ClubsForm

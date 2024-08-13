@@ -16,9 +16,9 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     account_type = models.CharField(max_length=250, choices=AccountTypeChoices)
     creation_date = models.DateTimeField(auto_now_add=True)
-    director_profile = models.ForeignKey('DirectorProfile', on_delete=models.SET_NULL, null=True)
-    student_profile = models.ForeignKey('StudentProfile', on_delete=models.SET_NULL, null=True)
-    Coach_profile = models.ForeignKey('CoachProfile', on_delete=models.SET_NULL, null=True)
+    director_profile = models.ForeignKey('DirectorProfile', on_delete=models.SET_NULL, null=True, blank=True)
+    student_profile = models.ForeignKey('StudentProfile', on_delete=models.SET_NULL, null=True, blank=True)
+    Coach_profile = models.ForeignKey('CoachProfile', on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class ClubsModel(models.Model):
