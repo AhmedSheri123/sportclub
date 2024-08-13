@@ -13,7 +13,7 @@
         {% for item in nav_items %}
         <a
           href="{{ item.href }}"
-          class="px-4 py-2 rounded-full text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800 transition-all duration-200"
+          class="px-4 py-2 rounded-full text-gray-700 hover:bg-gray-100 transition-all duration-200"
         >
           {{ item.name }}
         </a>
@@ -28,7 +28,7 @@
 
       <button
         id="menuToggle"
-        class="lg:hidden text-gray-700 dark:text-gray-300 focus:outline-none"
+        class="lg:hidden text-gray-700 focus:outline-none"
       >
         <svg
           class="w-8 h-8"
@@ -51,13 +51,10 @@
 
 <div
   id="mobileMenu"
-  class="fixed inset-0 bg-white dark:bg-gray-900 z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
+  class="fixed inset-0 bg-white z-40 transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden"
 >
   <div class="flex flex-col h-full justify-center items-center space-y-8 p-8">
-    <button
-      id="closeMenu"
-      class="absolute top-6 right-6 text-gray-700 dark:text-gray-300"
-    >
+    <button id="closeMenu" class="absolute top-6 right-6 text-gray-700">
       <svg
         class="w-8 h-8"
         fill="none"
@@ -76,7 +73,7 @@
     {% for item in nav_items %}
     <a
       href="{{ item.href }}"
-      class="text-2xl font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+      class="text-2xl font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
     >
       {{ item.name }}
     </a>
