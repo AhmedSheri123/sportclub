@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 .box {
   opacity: 0;
   transform: translate(0, 40px);

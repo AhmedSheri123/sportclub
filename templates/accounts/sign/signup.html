@@ -1,0 +1,151 @@
+{% extends "base_landing.html" %} {% block content %}
+
+<div class="flex min-h-screen bg-indigo-50">
+  <div
+    class="flex flex-1 flex-col justify-center px-4 py-28 sm:px-6 lg:flex-none lg:px-20 xl:px-24"
+  >
+    <div class="mx-auto w-full max-w-sm lg:w-96">
+      <div>
+        <h2 class="mt-6 text-3xl font-extrabold text-black">انشاء حساب جديد</h2>
+        <p class="mt-2 text-sm text-indigo-400">
+          عندك حساب؟
+          <a
+            href="/auth/signin"
+            class="font-medium text-indigo-400 hover:text-indigo-300"
+          >
+            سجل الدخول
+          </a>
+        </p>
+      </div>
+
+      <div class="mt-8">
+        <form class="space-y-6">
+          <div>
+            <label for="username" class="block text-sm font-medium text-black">
+              اسم المستخدم
+            </label>
+            <div class="mt-1">
+              <input
+                id="username"
+                name="username"
+                type="text"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-black">
+              البريد الالكتروني
+            </label>
+            <div class="mt-1">
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="full_name" class="block text-sm font-medium text-black">
+              الاسم الكامل
+            </label>
+            <div class="mt-1">
+              <input
+                id="full_name"
+                name="full_name"
+                type="text"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-black">
+              رقم الهاتف
+            </label>
+            <div class="mt-1">
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="birthday" class="block text-sm font-medium text-black">
+              تاريخ الميلاد
+            </label>
+            <div class="mt-1">
+              <input
+                id="birthday"
+                name="birthday"
+                type="date"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="club" class="block text-sm font-medium text-black">
+              النادي
+            </label>
+            <div class="mt-1">
+              <input
+                id="club"
+                name="club"
+                type="text"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label for="password" class="block text-sm font-medium text-black">
+              كلمة المرور
+            </label>
+            <div class="mt-1">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autocomplete="new-password"
+                required
+                class="relative block w-full appearance-none rounded-md border border-indigo-200 px-3 py-2 text-black placeholder-indigo-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              class="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+            >
+              انشاء حساب
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="relative hidden w-0 flex-1 lg:block">
+    <img
+      class="absolute inset-0 h-full w-full object-cover"
+      src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
+      alt="signup image"
+    />
+  </div>
+</div>
+
+{% endblock %}
