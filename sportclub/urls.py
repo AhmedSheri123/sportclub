@@ -25,6 +25,7 @@ urlpatterns = [
 
     path('admin_dashboard/', include('admin_dashboard.urls')),
     path('club_dashboard/', include('club_dashboard.urls')),
+    path('coach_dashboard/', include('coach_dashboard.urls')),
     path('admin/', admin.site.urls),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
