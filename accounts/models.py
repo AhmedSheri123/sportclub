@@ -28,6 +28,8 @@ class ClubsModel(models.Model):
     street = models.CharField(max_length=250, null=True, verbose_name="الشارع")
     creation_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.name)
 
 class DirectorProfile(models.Model):
     full_name = models.CharField(max_length=50)
@@ -42,8 +44,8 @@ class StudentProfile(models.Model):
     phone = models.CharField(max_length=50)
     birthday = models.DateField()
     has_subscription = models.BooleanField(default=False)
-    subscription_start_date = models.DateTimeField()
-    subscription_end_date = models.DateTimeField()
+    subscription_start_date = models.DateTimeField(null=True, blank=True)
+    subscription_end_date = models.DateTimeField(null=True, blank=True)
 
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)

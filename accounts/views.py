@@ -41,7 +41,8 @@ def signup(request):
             
             userprofile = UserProfile.objects.create(user=user, account_type='3', student_profile=student_profile)
             userprofile.save()
-    return render(request, 'accounts/sign/signup.html')
+            return redirect('signin')
+    return render(request, 'accounts/sign/signup.html', {'form':form})
 
 
 

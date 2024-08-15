@@ -14,3 +14,5 @@ class CoachProfileForm(forms.ModelForm):
     class Meta:
         model = CoachProfile
         fields = ['full_name', 'phone', 'stadium', 'club']
+
+        
