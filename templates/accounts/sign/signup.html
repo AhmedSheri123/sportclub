@@ -19,7 +19,9 @@
       </div>
 
       <div class="mt-8">
-        <form class="space-y-6">
+        <form class="space-y-6" method="post">
+          {% csrf_token %}
+
           <div>
             <label for="username" class="block text-sm font-medium text-black">
               اسم المستخدم

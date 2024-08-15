@@ -1,3 +1,52 @@
-{% extends "base_club_dashboard.html" %}
+{% extends "base_club_dashboard.html" %} {% block content %}
+<main class="md:pr-[20%] bg-indigo-50 w-full px-8 min-h-screen">
+  <h1 class="text-3xl font-bold px-8 pt-8 pb-8">نادي {name}</h1>
 
-{% block content %} {% endblock %}
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-2 md:px-8 mb-8"
+  >
+    <div
+      class="justify-center flex flex-col gap-4 rounded-lg bg-white p-6 shadow-md"
+    >
+      <div class="flex items-center justify-center">
+        <h2 class="text-xl font-bold">عدد المشتركين</h2>
+      </div>
+      <p class="text-center text-4xl font-bold text-indigo-600">23</p>
+      <a
+        href="/club_dashboard/viewStudents"
+        class="w-full rounded-lg bg-indigo-700 text-center text-white py-2 hover:bg-indigo-800 transition duration-300"
+      >
+        المشتركين
+      </a>
+    </div>
+    <div
+      class="justify-center flex flex-col gap-4 rounded-lg bg-white p-6 shadow-md"
+    >
+      <div class="flex items-center justify-center">
+        <h2 class="text-xl font-bold">عدد المدربين</h2>
+      </div>
+      <p class="text-center text-4xl font-bold text-indigo-600">23</p>
+      <a
+        href="/club_dashboard/viewCoachs"
+        class="w-full rounded-lg bg-indigo-700 text-center text-white py-2 hover:bg-indigo-800 transition duration-300"
+      >
+        المدربين
+      </a>
+    </div>
+    <div
+      class="justify-center flex flex-col gap-4 rounded-lg bg-white p-6 shadow-md"
+    >
+      <div class="flex items-center justify-center">
+        <h2 class="text-xl font-bold">عدد الاداريين</h2>
+      </div>
+      <p class="text-center text-4xl font-bold text-green-600">213</p>
+      <a
+        href="/club_dashboard/viewDirectors"
+        class="w-full rounded-lg bg-green-700 text-center text-white py-2 hover:bg-green-800 transition duration-300"
+      >
+        الاداريين
+      </a>
+    </div>
+  </div>
+</main>
+{% endblock %}

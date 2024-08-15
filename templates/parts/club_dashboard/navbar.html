@@ -1,5 +1,4 @@
-{% load static %}
-{% block content %}
+{% load static %} {% block content %}
 
 <!-- Mobile menu button -->
 <button
@@ -48,8 +47,8 @@
   id="sidebar"
   class="fixed inset-y-0 right-0 z-40 flex w-64 flex-col justify-between rounded-l-lg bg-white transition-transform duration-300 ease-in-out translate-x-full md:translate-x-0"
 >
-  <div class=" py-4 border-b border-gray-100">
-<p>logo here</p>
+  <div class="py-4 border-b border-gray-100">
+    <p>logo here</p>
   </div>
 
   <nav class="mt-6 flex flex-1 flex-col">
@@ -72,13 +71,23 @@
           class="transition-transform duration-200 ease-in-out group-hover:translate-x-1"
           >اللاعبون</span
         >
+      </a>
       <a
-        href="/club_dashboard/viewCoach"
+        href="/club_dashboard/viewCoachs"
         class="group flex items-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 ease-in-out text-black hover:bg-indigo-100 hover:text-indigo-800"
       >
         <span
           class="transition-transform duration-200 ease-in-out group-hover:translate-x-1"
           >المدربون</span
+        >
+      </a>
+      <a
+        href="/club_dashboard/viewDirectors"
+        class="group flex items-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 ease-in-out text-black hover:bg-indigo-100 hover:text-indigo-800"
+      >
+        <span
+          class="transition-transform duration-200 ease-in-out group-hover:translate-x-1"
+          >الاداريين</span
         >
       </a>
 
