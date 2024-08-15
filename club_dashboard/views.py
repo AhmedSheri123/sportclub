@@ -6,8 +6,9 @@ from .forms import StudentProfileForm, CoachProfileForm
 # Create your views here.
 
 def club_dashboard_index(request):
-
-    return render(request, 'club_dashboard/index.html')
+    user = request.user
+    clubName = user.userprofile.director_profile.club
+    return render(request, 'club_dashboard/index.html', {'clubName':clubName})
 
 
 def viewStudents(request):
