@@ -19,6 +19,8 @@ def signin(request):
                 login(request, user)
                 if user.userprofile.account_type == '1':
                     return redirect('adminIndex')
+                elif user.userprofile.account_type == '2':
+                    return redirect('club_dashboard_index')
                 else:
                     return redirect('landingIndex')
     return render(request, 'accounts/sign/signin.html')
