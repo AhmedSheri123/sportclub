@@ -24,20 +24,20 @@
             <th class="text-center font-semibold p-3 md:p-4">الاسم كامل</th>
             <th class="text-center font-semibold p-3 md:p-4">الهاتف</th>
             <th class="text-center font-semibold p-3 md:p-4">الملعب</th>
-            <th class="text-center font-semibold p-3 md:p-4">النادي</th>
-            <th class="text-center font-semibold p-3 md:p-4">كلمة المرور</th>
+            {% comment %} <th class="text-center font-semibold p-3 md:p-4">النادي</th> {% endcomment %}
+            {% comment %} <th class="text-center font-semibold p-3 md:p-4">كلمة المرور</th> {% endcomment %}
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
           {% for coach in coach_userprofile %}
           <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
-            <td class="p-3 md:p-4">{{coach.username}}</td>
-            <td class="p-3 md:p-4">{{coach.email}}</td>
-            <td class="p-3 md:p-4">{{coach.full_name}}</td>
-            <td class="p-3 md:p-4">{{coach.phone}}</td>
-            <td class="p-3 md:p-4">{{coach.stadium}}</td>
-            <td class="p-3 md:p-4">{{coach.club}}</td>
-            <td class="p-3 md:p-4">{{ coach.password }}</td>
+            <td class="p-3 md:p-4">{{coach.user.username}}</td>
+            <td class="p-3 md:p-4">{{coach.user.email}}</td>
+            <td class="p-3 md:p-4">{{coach.Coach_profile.full_name}}</td>
+            <td class="p-3 md:p-4">{{coach.Coach_profile.phone}}</td>
+            <td class="p-3 md:p-4">{{coach.Coach_profile.stadium}}</td>
+            {% comment %} <td class="p-3 md:p-4">{{coach.club}}</td> {% endcomment %}
+            {% comment %} <td class="p-3 md:p-4">{{ coach.password }}</td> {% endcomment %}
           </tr>
           {% endfor %}
         </tbody>

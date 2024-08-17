@@ -7,12 +7,12 @@ urlpatterns = [
 
     path('viewStudents', views.viewStudents, name="viewStudents"),
     path('addStudent', views.addStudent, name="addStudent"),
-    path('editStudent', views.editStudent, name="editStudent"),
-    path('deleteStudent', views.deleteStudent, name="deleteStudent"),
+    path('editStudent/<int:id>', views.editStudent, name="editStudent"),
+    path('deleteStudent/<int:id>', views.deleteStudent, name="deleteStudent"),
 
     path('viewCoachs', views.viewCoachs, name="viewCoachs"),    
     path('addCoach', views.addCoach, name="addCoach"),    
-    path('editCoach', views.editCoach, name="editCoach"),    
-    path('deleteStudent', views.deleteStudent, name="deleteStudent"),    
+    path('editCoach/<int:id>', views.editCoach, name="editCoach"),    
+    path('deleteStudent/<int:id>', views.deleteStudent, name="deleteStudent"),    
 
 ]

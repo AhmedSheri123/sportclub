@@ -24,20 +24,18 @@
             <th class="text-center font-semibold p-3 md:p-4">الاسم كامل</th>
             <th class="text-center font-semibold p-3 md:p-4">الهاتف</th>
             <th class="text-center font-semibold p-3 md:p-4">تاريخ الميلاد</th>
-            <th class="text-center font-semibold p-3 md:p-4">النادي</th>
-            <th class="text-center font-semibold p-3 md:p-4">كلمة المرور</th>
+            {% comment %} <th class="text-center font-semibold p-3 md:p-4">النادي</th> {% endcomment %}
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-200">
           {% for student in student_userprofile %}
           <tr class="hover:bg-gray-50 transition duration-150 ease-in-out">
-            <td class="p-3 md:p-4">{{student.username}}</td>
-            <td class="p-3 md:p-4">{{student.email}}</td>
+            <td class="p-3 md:p-4">{{student.user.username}}</td>
+            <td class="p-3 md:p-4">{{student.user.email}}</td>
             <td class="p-3 md:p-4">{{student.full_name}}</td>
-            <td class="p-3 md:p-4">{{student.phone}}</td>
-            <td class="p-3 md:p-4">{{student.birthday}}</td>
-            <td class="p-3 md:p-4">{{student.club}}</td>
-            <td class="p-3 md:p-4">{{ student.password }}</td>
+            <td class="p-3 md:p-4">{{student.student_profile.phone}}</td>
+            <td class="p-3 md:p-4">{{student.student_profile.birthday}}</td>
+            {% comment %} <td class="p-3 md:p-4">{{student.student_profile.club}}</td> {% endcomment %}
           </tr>
           {% endfor %}
         </tbody>
