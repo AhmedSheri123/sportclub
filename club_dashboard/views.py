@@ -7,8 +7,13 @@ from .forms import StudentProfileForm, CoachProfileForm
 
 def club_dashboard_index(request):
     user = request.user
-    clubName = user.userprofile.director_profile.club
-    return render(request, 'club_dashboard/index.html', {'clubName':clubName})
+    club = user.userprofile.director_profile.club
+    clubName = club.name
+    userprofiles = UserProfile.objects.filter()
+
+    students = userprofiles.filter(account_type='3', student_profile__club=club)
+    coaches = userprofiles.filter(account_type='4', Coach_profile__club=club)
+    return render(request, 'club_dashboard/index.html', {'clubName':clubName, 'students':students, 'coaches':coaches})
 
 
 def viewStudents(request):
