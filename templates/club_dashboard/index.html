@@ -1,7 +1,5 @@
 {% extends "base_club_dashboard.html" %} {% block content %}
-<main
-  class="xl:pr-[20%] bg-gradient-to-br from-indigo-50 to-indigo-100 w-full px-4 md:px-8 min-h-screen pb-12"
->
+<main class="xl:pr-[20%] bg-indigo-50 w-full px-4 md:px-8 min-h-screen pb-12">
   <h1 class="text-4xl font-extrabold py-16 text-center text-indigo-800">
     نادي {{ clubName }}
   </h1>
@@ -30,7 +28,9 @@
           ></path>
         </svg>
       </div>
-      <p class="text-center text-5xl font-bold text-indigo-600">{{students.count}}</p>
+      <p class="text-center text-5xl font-bold text-indigo-600">
+        {{students.count}}
+      </p>
 
       <a
         href="/club_dashboard/viewStudents"
@@ -61,7 +61,9 @@
           ></path>
         </svg>
       </div>
-      <p class="text-center text-5xl font-bold text-indigo-600">{{coaches.count}}</p>
+      <p class="text-center text-5xl font-bold text-indigo-600">
+        {{coaches.count}}
+      </p>
 
       <a
         href="/club_dashboard/viewCoachs"

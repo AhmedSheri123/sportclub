@@ -1,0 +1,111 @@
+{% extends "base_coach_dashboard.html" %} {% block content %}
+<div class="xl:pr-[20%] bg-indigo-50 w-full px-4 md:px-8 min-h-screen pb-12">
+  <h1 class="text-4xl font-bold text-indigo-800 py-16 px-4 md:px-8">
+    المدرب {{ coachName }}
+  </h1>
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8"
+  >
+    <div
+      class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+    >
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-indigo-800">مجموع مواعيدي</h2>
+        <i class="fas fa-calendar-check text-indigo-600 text-3xl"></i>
+      </div>
+      <p class="text-center text-6xl font-bold text-indigo-600">165</p>
+      <div class="text-sm text-gray-600 text-center">
+        <p>آخر تحديث: اليوم 10:30 ص</p>
+      </div>
+      <a
+        href="/coach_dashboard/viewCoachAppointements"
+        class="w-full rounded-lg bg-indigo-700 text-center text-white py-3 hover:bg-indigo-800 transition duration-300 flex items-center justify-center"
+      >
+        <span>عرض التفاصيل</span>
+        <i class="fas fa-arrow-right mr-2"></i>
+      </a>
+    </div>
+
+    <div
+      class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+    >
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-indigo-800">مواعيد المشتركين</h2>
+        <i class="fas fa-users text-indigo-600 text-3xl"></i>
+      </div>
+      <p class="text-center text-6xl font-bold text-indigo-600">165</p>
+      <div class="text-sm text-gray-600 text-center">
+        <p>زيادة بنسبة 5٪ عن الأسبوع الماضي</p>
+      </div>
+      <a
+        href="/coach_dashboard/viewStudentAppointements"
+        class="w-full rounded-lg bg-indigo-700 text-center text-white py-3 hover:bg-indigo-800 transition duration-300 flex items-center justify-center"
+      >
+        <span>عرض التفاصيل</span>
+        <i class="fas fa-arrow-right mr-2"></i>
+      </a>
+    </div>
+
+    <div
+      class="flex flex-col gap-6 rounded-xl bg-white p-8 shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+    >
+      <div class="flex items-center justify-between">
+        <h2 class="text-2xl font-bold text-indigo-800">الإحصائيات</h2>
+        <i class="fas fa-chart-line text-indigo-600 text-3xl"></i>
+      </div>
+      <p class="text-center text-6xl font-bold text-indigo-600">85%</p>
+      <div class="text-sm text-gray-600 text-center">
+        <p>نسبة رضا المشتركين</p>
+      </div>
+      <a
+        href="#"
+        class="w-full rounded-lg bg-indigo-700 text-center text-white py-3 hover:bg-indigo-800 transition duration-300 flex items-center justify-center"
+      >
+        <span>عرض التفاصيل</span>
+        <i class="fas fa-arrow-right mr-2"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="mt-12 bg-white rounded-xl shadow-lg m-8 px-4 md:px-8 py-6">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="text-2xl font-bold text-indigo-800">المواعيد القادمة</h3>
+      <a
+        href="#"
+        class="text-indigo-600 hover:text-indigo-800 transition duration-300"
+        >عرض الكل</a
+      >
+    </div>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">اسم المشترك</th>
+            <th scope="col" class="px-6 py-3">تاريخ البدء</th>
+            <th scope="col" class="px-6 py-3">تاريخ الانتهاء</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-900">أحمد محمد</td>
+            <td class="px-6 py-4">2023-06-15</td>
+            <td class="px-6 py-4">2023-06-16</td>
+          </tr>
+          <tr class="bg-white border-b hover:bg-gray-50">
+            <td class="px-6 py-4 font-medium text-gray-900">سارة علي</td>
+            <td class="px-6 py-4">2023-06-16</td>
+            <td class="px-6 py-4">2023-06-16</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mt-6 text-center flex justify-end items-end">
+      <button
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition duration-300"
+      >
+        عرض المزيد
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}

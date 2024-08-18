@@ -4,7 +4,7 @@ from .models import CoachAppointmentsModel, StudentAppointmentPresenceModel
 # Create your views here.
 
 def index(request):
-    return render('coach_dashboard\index.html')
+    return render(request, 'coach_dashboard\index.html')
 
 
 #CoachAppointments
@@ -46,7 +46,7 @@ def deleteCoachAppointments(request, id):
 def viewStudentAppointmentPresences(request):
     user = request.user
     StudentAppointmentPresences = StudentAppointmentPresenceModel.objects.filter(appointment__coach=user.userprofile.Coach_profile)
-    return render(request, 'coach_dashboard/StudentAppointmentPresence/viewStudentAppointmentPresences.html', {'StudentAppointmentPresences':StudentAppointmentPresences})
+    return render(request, 'coach_dashboard/StudentAppointmentPresences/viewStudentAppointmentPresences.html', {'StudentAppointmentPresences':StudentAppointmentPresences})
 
 def addStudentAppointmentPresence(request):
     form = StudentAppointmentPresenceForm
@@ -55,7 +55,7 @@ def addStudentAppointmentPresence(request):
         if form.is_valid():
             form.save()
             
-    return render(request, 'coach_dashboard/StudentAppointmentPresence/addStudentAppointmentPresence.html', {'form':form})
+    return render(request, 'coach_dashboard/StudentAppointmentPresences/addStudentAppointmentPresence.html', {'form':form})
 
 
 def editStudentAppointmentPresence(request, id):
@@ -65,7 +65,7 @@ def editStudentAppointmentPresence(request, id):
         form = StudentAppointmentPresenceForm(request.POST, instance=CoachAppointment)
         if form.is_valid():
             form.save()
-    return render(request, 'coach_dashboard/StudentAppointmentPresence/editStudentAppointmentPresence.html', {'form':form})
+    return render(request, 'coach_dashboard/StudentAppointmentPresences/editStudentAppointmentPresence.html', {'form':form})
 
 def deleteStudentAppointmentPresence(request, id):
     StudentAppointmentPresence = StudentAppointmentPresenceModel.objects.get(id=id)
