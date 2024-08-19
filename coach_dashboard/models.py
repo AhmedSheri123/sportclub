@@ -9,8 +9,14 @@ class CoachAppointmentsModel(models.Model):
 
     creation_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.coach.full_name)
+        
 class StudentAppointmentPresenceModel(models.Model):
     appointment = models.ForeignKey(CoachAppointmentsModel, on_delete=models.CASCADE)
     student = models.ForeignKey(StudentProfile, on_delete=models.CASCADE)
 
     creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.student.full_name)

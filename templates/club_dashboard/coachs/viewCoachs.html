@@ -33,10 +33,10 @@
           <td class="px-6 py-4">{{ coach.Coach_profile.phone }}</td>
           <td class="px-6 py-4">{{ coach.Coach_profile.stadium }}</td>
           <td class="px-6 py-4">
-            <a href="#" class="font-medium text-indigo-600 hover:underline mr-2"
+            <a href="{% url 'editCoach' coach.Coach_profile.id %}" class="font-medium text-indigo-600 hover:underline mr-2"
               >تعديل</a
             >
-            <a href="#" class="font-medium text-red-600 hover:underline">حذف</a>
+            <a href="{% url 'deleteCoach' coach.Coach_profile.id %}" class="font-medium text-red-600 hover:underline">حذف</a>
           </td>
         </tr>
         {% empty %}

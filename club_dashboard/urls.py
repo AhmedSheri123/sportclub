@@ -13,6 +13,6 @@ urlpatterns = [
     path('viewCoachs', views.viewCoachs, name="viewCoachs"),    
     path('addCoach', views.addCoach, name="addCoach"),    
     path('editCoach/<int:id>', views.editCoach, name="editCoach"),    
-    path('deleteStudent/<int:id>', views.deleteStudent, name="deleteStudent"),    
+    path('deleteCoach/<int:id>', views.deleteCoach, name="deleteCoach"),    
 
 ]

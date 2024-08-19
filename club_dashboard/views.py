@@ -140,7 +140,7 @@ def editCoach(request, id):
     return render(request, 'club_dashboard/coachs/editCoach.html', {'coach':coach, 'form':form, 'email':email, 'username':username})
 
 
-def deleteStudent(request, id):
+def deleteCoach(request, id):
     coach_profile = CoachProfile.objects.get(id=id)
     coach = User.objects.get(userprofile__Coach_profile=coach_profile)
 

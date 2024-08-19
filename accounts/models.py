@@ -37,7 +37,9 @@ class DirectorProfile(models.Model):
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return str(self.full_name)
+    
 class StudentProfile(models.Model):
     
     full_name = models.CharField(max_length=50)
@@ -50,6 +52,8 @@ class StudentProfile(models.Model):
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.full_name)
 
 class CoachProfile(models.Model):
     full_name = models.CharField(max_length=50)
@@ -57,3 +61,6 @@ class CoachProfile(models.Model):
     stadium = models.CharField(max_length=50)
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.full_name)

@@ -13,9 +13,9 @@
         <h2 class="text-2xl font-bold text-indigo-800">مجموع مواعيدي</h2>
         <i class="fas fa-calendar-check text-indigo-600 text-3xl"></i>
       </div>
-      <p class="text-center text-6xl font-bold text-indigo-600">165</p>
+      <p class="text-center text-6xl font-bold text-indigo-600">{{CoachAppointments.count}}</p>
       <div class="text-sm text-gray-600 text-center">
-        <p>آخر تحديث: اليوم 10:30 ص</p>
+        <p>آخر تحديث: {{CoachAppointments.first.creation_date|date:"Y-m-d H:i"}}</p>
       </div>
       <a
         href="/coach_dashboard/viewCoachAppointements"
@@ -33,7 +33,7 @@
         <h2 class="text-2xl font-bold text-indigo-800">مواعيد المشتركين</h2>
         <i class="fas fa-users text-indigo-600 text-3xl"></i>
       </div>
-      <p class="text-center text-6xl font-bold text-indigo-600">165</p>
+      <p class="text-center text-6xl font-bold text-indigo-600">{{StudentAppointmentPresences.count}}</p>
       <div class="text-sm text-gray-600 text-center">
         <p>زيادة بنسبة 5٪ عن الأسبوع الماضي</p>
       </div>
