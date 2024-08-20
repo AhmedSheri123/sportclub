@@ -1,0 +1,175 @@
+{% extends "base_student.html" %} {% load static %} {% block content %}
+<section
+  class="w-full py-8 md:py-16 bg-gradient-to-br from-indigo-50 to-blue-100"
+>
+  <div class="container mx-auto px-4 mt-4 md:mt-8 pb-24">
+    <div
+      class="bg-white rounded-2xl shadow-xl overflow-hidden transition-shadow duration-300 hover:shadow-2xl"
+    >
+      <div class="flex flex-col md:flex-row-reverse">
+        <!-- Product Image -->
+        <div class="md:w-1/2 relative">
+          <img
+            src="https://via.placeholder.com/600x400"
+            alt="Product Image"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+          <div
+            class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            جديد
+          </div>
+        </div>
+        <!-- Product Details -->
+        <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
+          <div>
+            <h1 class="text-3xl font-bold mb-4 text-right text-gray-800">
+              كرة القدم الاحترافية
+            </h1>
+            <p class="text-gray-600 mb-6 text-right leading-relaxed">
+              كرة قدم عالية الجودة مصممة للاعبين المحترفين. مثالية للمباريات
+              والتدريبات. تضمن أداءً فائقًا وتحكمًا دقيقًا في كل لعبة.
+            </p>
+            <div class="mb-6 text-right">
+              <span class="text-3xl font-bold text-blue-600 block"
+                >١١٢.٤٦ ريال</span
+              >
+              <span class="text-sm text-gray-500 block"
+                >شامل الضريبة | التوصيل مجاني</span
+              >
+            </div>
+            <div class="mb-8">
+              <h3 class="text-lg font-semibold mb-3 text-right text-gray-700">
+                المميزات:
+              </h3>
+              <ul class="list-none text-right space-y-3">
+                <li class="flex items-center justify-start">
+                  <i class="fas fa-check text-green-500 ml-2"></i>
+                  <span>مصنوعة من مواد فائقة الجودة</span>
+                </li>
+                <li class="flex items-center justify-start">
+                  <i class="fas fa-check text-green-500 ml-2"></i>
+                  <span>تصميم آيروديناميكي للأداء الأمثل</span>
+                </li>
+                <li class="flex items-center justify-start">
+                  <i class="fas fa-check text-green-500 ml-2"></i>
+                  <span>مقاومة للماء</span>
+                </li>
+                <li class="flex items-center justify-start">
+                  <i class="fas fa-check text-green-500 ml-2"></i>
+                  <span>متوافقة مع معايير FIFA</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div
+              class="flex flex-col sm:flex-row justify-start items-center mb-6 space-y-4 sm:space-y-0"
+            >
+              <div class="flex items-center w-full sm:w-auto ml-4">
+                <label for="quantity" class="text-right text-gray-700 ml-2"
+                  >الكمية:</label
+                >
+                <select
+                  id="quantity"
+                  class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <button
+                class="w-full sm:w-auto bg-blue-600 text-white py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                <i class="fas fa-shopping-cart mr-2"></i>
+                <span>أضف إلى السلة</span>
+              </button>
+            </div>
+            <div class="text-right">
+              <span class="text-sm text-gray-500">رمز المنتج: KF2023-001</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-8 text-right text-gray-800">
+        منتجات ذات صلة
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Related Product 1 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <img
+            src="https://via.placeholder.com/300x200"
+            alt="حذاء كرة قدم"
+            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+          />
+          <div class="p-6 text-right">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">
+              حذاء كرة قدم
+            </h3>
+            <p class="text-gray-600 text-lg mb-4">٣٣٧.٤٦ ريال</p>
+            <a
+              href="#"
+              class="block w-full bg-blue-600 text-white text-center py-3 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              <span>عرض التفاصيل</span>
+            </a>
+          </div>
+        </div>
+        <!-- Related Product 2 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <img
+            src="https://via.placeholder.com/300x200"
+            alt="قميص المنتخب"
+            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+          />
+          <div class="p-6 text-right">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">
+              قميص المنتخب
+            </h3>
+            <p class="text-gray-600 text-lg mb-4">١٤٩.٩٩ ريال</p>
+            <a
+              href="#"
+              class="block w-full bg-blue-600 text-white text-center py-3 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              <span>عرض التفاصيل</span>
+            </a>
+          </div>
+        </div>
+        <!-- Related Product 3 -->
+        <div
+          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        >
+          <img
+            src="https://via.placeholder.com/300x200"
+            alt="شنطة رياضية"
+            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+          />
+          <div class="p-6 text-right">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">
+              شنطة رياضية
+            </h3>
+            <p class="text-gray-600 text-lg mb-4">٨٩.٩٩ ريال</p>
+            <a
+              href="#"
+              class="block w-full bg-transparent py-2 md:py-3 px-4 rounded-full text-black hover:bg-indigo-600 hover:text-white transition duration-300 text-sm md:text-base text-center border border-indigo-300"
+            >
+              <span>عرض التفاصيل</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
