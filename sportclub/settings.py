@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'students',
     'coach_dashboard',
     'accounts',
     'admin_dashboard',
