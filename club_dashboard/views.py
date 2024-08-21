@@ -202,3 +202,16 @@ def editServicesClassification(request):
 
 def viewServicessClassification(request):
     return render(request, 'club_dashboard/services/Classification/viewClassification.html')
+
+
+
+#Blog
+def addArticle(request):
+    return render(request, 'club_dashboard/blog/addArticle.html')
+
+def editArticle(request):
+    return render(request, 'club_dashboard/blog/editArticle.html')
+
+def viewArticles(request):
+    return render(request, 'club_dashboard/blog/viewArticles.html')
+
