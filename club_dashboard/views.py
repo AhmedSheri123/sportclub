@@ -148,3 +148,57 @@ def deleteCoach(request, id):
     coach.delete()
 
     return redirect('viewCoachs')
+
+
+
+#Products
+def addProduct(request):
+    return render(request, 'club_dashboard/products/addProductStock.html')
+
+def editProduct(request):
+    return render(request, 'club_dashboard/products/addProductStock.html')
+
+def viewProducts(request):
+    return render(request, 'club_dashboard/products/addProductStock.html')
+
+
+def addProductStock(request):
+    return render(request, 'club_dashboard/products/ProductsStock/addProductStock.html')
+
+def editProductStock(request):
+    return render(request, 'club_dashboard/products/ProductsStock/editProductStock.html')
+
+def viewProductsStock(request):
+    return render(request, 'club_dashboard/products/ProductsStock/viewProductsStock.html')
+
+
+def addProductClassification(request):
+    return render(request, 'club_dashboard/products/Classification/addClassification.html')
+
+def editProductClassification(request):
+    return render(request, 'club_dashboard/products/Classification/editClassification.html')
+
+def viewProductsClassification(request):
+    return render(request, 'club_dashboard/products/Classification/viewClassification.html')
+
+
+
+#Services
+def addServices(request):
+    return render(request, 'club_dashboard/services/addServices.html')
+
+def editServices(request):
+    return render(request, 'club_dashboard/services/editServices.html')
+
+def viewServices(request):
+    return render(request, 'club_dashboard/services/viewServices.html')
+
+
+def addServicesClassification(request):
+    return render(request, 'club_dashboard/services/Classification/addClassification.html')
+
+def editServicesClassification(request):
+    return render(request, 'club_dashboard/services/Classification/editClassification.html')
+
+def viewServicessClassification(request):
+    return render(request, 'club_dashboard/services/Classification/viewClassification.html')

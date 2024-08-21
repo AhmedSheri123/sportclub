@@ -46,6 +46,10 @@ class ServicesModel(models.Model):
     creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=254, null=True)
     desc = models.TextField(null=True)
+    
+    age_from = models.IntegerField()
+    age_to = models.IntegerField()
+
     price = models.DecimalField(max_digits = 6, decimal_places = 2)
     classification = models.ManyToManyField('ProductsClassificationModel')
     is_enabled = models.BooleanField(default=True)
