@@ -151,15 +151,6 @@ def deleteCoach(request, id):
 
 
 
-#Products
-def addProduct(request):
-    return render(request, 'club_dashboard/products/addProductStock.html')
-
-def editProduct(request):
-    return render(request, 'club_dashboard/products/addProductStock.html')
-
-def viewProducts(request):
-    return render(request, 'club_dashboard/products/addProductStock.html')
 
 
 def addProductStock(request):
@@ -200,7 +191,7 @@ def addServicesClassification(request):
 def editServicesClassification(request):
     return render(request, 'club_dashboard/services/Classification/editClassification.html')
 
-def viewServicessClassification(request):
+def viewServicesClassification(request):
     return render(request, 'club_dashboard/services/Classification/viewClassification.html')
 
 

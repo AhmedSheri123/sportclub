@@ -16,11 +16,8 @@ urlpatterns = [
     path('deleteCoach/<int:id>', views.deleteCoach, name="deleteCoach"),
 
     #Products
-    path('addProduct', views.addProduct, name="addProduct"),
-    path('editProduct', views.editProduct, name="editProduct"),
-    path('viewProducts', views.viewProducts, name="viewProducts"),
 
-    path('addProduct', views.addProduct, name="addProduct"),
+    path('addProduct', views.addProductStock, name="addProduct"),
     path('editProductStock', views.editProductStock, name="editProductStock"),
     path('viewProductsStock', views.viewProductsStock, name="viewProductsStock"),
 
@@ -36,7 +33,7 @@ urlpatterns = [
 
     path('addServicesClassification', views.addServicesClassification, name="addServicesClassification"),
     path('editServicesClassification', views.editServicesClassification, name="editServicesClassification"),
-    path('viewServicessClassification', views.viewServicessClassification, name="viewServicessClassification"),
+    path('viewServicesClassification', views.viewServicesClassification, name="viewServicesClassification"),
 
     #Blog
     path('addArticle', views.addArticle, name="addArticle"),

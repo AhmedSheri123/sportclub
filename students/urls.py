@@ -14,5 +14,5 @@ urlpatterns = [
 
     #Blog
     path('viewArticles', views.viewArticles, name='viewArticles'),
-    path('viewArticle/<int:id>', views.viewArticle, name='viewArticle'),
+    path('viewArticles/<int:id>', views.viewArticle, name='viewArticle'),
 ]
