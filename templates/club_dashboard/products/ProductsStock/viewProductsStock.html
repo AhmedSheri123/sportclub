@@ -26,12 +26,13 @@
             <th class="px-4 py-3 text-center">السعر</th>
             <th class="px-4 py-3 text-center">الكمية المتوفرة</th>
             <th class="px-4 py-3 text-center">الحالة</th>
+            <th class="px-4 py-3 text-center">التصنيف</th>
             <th class="px-4 py-3 text-center">الإجراءات</th>
           </tr>
         </thead>
         <tbody>
           {% for product in products %}
-          <tr class="border-b hover:bg-indigo-50">
+          <tr class="border-b hover:bg-indigo-50 text-center">
             <td class="px-4 py-3">{{ product.title }}</td>
             <td class="px-4 py-3">{{ product.price }} ريال</td>
             <td class="px-4 py-3">{{ product.quantity }}</td>
@@ -48,6 +49,7 @@
               >
               {% endif %}
             </td>
+            <td class="px-4 py-3">{{ classification }}</td>
             <td class="px-4 py-3">
               <a
                 href="{% url 'editProductStock' product.id %}"
