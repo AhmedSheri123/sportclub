@@ -6,7 +6,7 @@ urlpatterns = [
     
     #Products
     path('viewProducts', views.viewProducts, name='viewProducts'),
-    path('viewProducts/<int:id>', views.viewSpecific, name='viewSpecific'),
+    path('viewProducts/<int:id>', views.viewProductsSpecific, name='viewProductsSpecific'),
 
     #Services
     path('viewServices', views.viewServices, name='viewServices'),

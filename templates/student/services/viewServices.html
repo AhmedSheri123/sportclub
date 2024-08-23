@@ -56,7 +56,7 @@
               {{service.price}} ريال
             </p>
             <a
-              href="#"
+              href="{% url 'viewServicesSpecific' service.id %}"
               class="block w-full bg-transparent py-2 md:py-3 px-4 rounded-full text-black hover:bg-indigo-600 hover:text-white transition duration-300 text-sm md:text-base text-center border border-indigo-300"
               >عرض التفاصيل</a
             >

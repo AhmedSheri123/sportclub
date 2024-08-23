@@ -24,15 +24,14 @@
         <div class="md:w-1/2 p-6 md:p-8 flex flex-col justify-between">
           <div>
             <h1 class="text-3xl font-bold mb-4 text-right text-gray-800">
-              تدريب كرة القدم الاحترافي
+              {{service.title}}
             </h1>
             <p class="text-gray-600 mb-6 text-right leading-relaxed">
-              جلسات تدريب عالية الجودة مصممة للاعبين المحترفين. مثالية للمباريات
-              والتدريبات. تضمن تحسين الأداء وتطوير المهارات في كل جلسة.
+              {{service.desc}}
             </p>
             <div class="mb-6 text-right">
               <span class="text-3xl font-bold text-blue-600 block"
-                >١١٢.٤٦ ريال</span
+                >{{service.price}} ريال</span
               >
               <span class="text-sm text-gray-500 block"
                 >شامل الضريبة | لكل جلسة</span
@@ -101,72 +100,31 @@
         خدمات ذات صلة
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Related Service 1 -->
+        {% for ser in services %}
         <div
-          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
         >
-          <img
-            src="https://via.placeholder.com/300x200"
-            alt="تدريب لياقة بدنية"
-            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
-          />
-          <div class="p-6 text-right">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">
-              تدريب لياقة بدنية
-            </h3>
-            <p class="text-gray-600 text-lg mb-4">٣٣٧.٤٦ ريال</p>
-            <a
-              href="#"
-              class="block w-full bg-blue-600 text-white text-center py-3 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-            >
-              <span>عرض التفاصيل</span>
-            </a>
-          </div>
+        <img
+          src="https://via.placeholder.com/300x200"
+          alt="تدريب لياقة بدنية"
+          class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
+        />
+        <div class="p-6 text-right">
+          <h3 class="text-xl font-semibold mb-2 text-gray-800">
+            {{ser.title}}
+          </h3>
+          <p class="text-gray-600 text-lg mb-4">{{ser.price}} ريال</p>
+          <a
+            href="#"
+            class="block w-full bg-blue-600 text-white text-center py-3 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            <span>عرض التفاصيل</span>
+          </a>
         </div>
-        <!-- Related Service 2 -->
-        <div
-          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-        >
-          <img
-            src="https://via.placeholder.com/300x200"
-            alt="استشارة تغذية رياضية"
-            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
-          />
-          <div class="p-6 text-right">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">
-              استشارة تغذية رياضية
-            </h3>
-            <p class="text-gray-600 text-lg mb-4">١٤٩.٩٩ ريال</p>
-            <a
-              href="#"
-              class="block w-full bg-blue-600 text-white text-center py-3 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
-            >
-              <span>عرض التفاصيل</span>
-            </a>
-          </div>
-        </div>
-        <!-- Related Service 3 -->
-        <div
-          class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-        >
-          <img
-            src="https://via.placeholder.com/300x200"
-            alt="تحليل أداء رياضي"
-            class="w-full h-56 object-cover transition-transform duration-300 hover:scale-105"
-          />
-          <div class="p-6 text-right">
-            <h3 class="text-xl font-semibold mb-2 text-gray-800">
-              تحليل أداء رياضي
-            </h3>
-            <p class="text-gray-600 text-lg mb-4">٨٩.٩٩ ريال</p>
-            <a
-              href="#"
-              class="block w-full bg-transparent py-2 md:py-3 px-4 rounded-full text-black hover:bg-indigo-600 hover:text-white transition duration-300 text-sm md:text-base text-center border border-indigo-300"
-            >
-              <span>عرض التفاصيل</span>
-            </a>
-          </div>
-        </div>
+      </div>
+      {% endfor %}
+      
+        
       </div>
     </div>
   </div>
