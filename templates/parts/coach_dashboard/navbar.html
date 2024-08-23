@@ -1,4 +1,6 @@
-{% load static %} {% block content %}
+{% load static %}
+{% load messenger_tags %}
+{% block content %}
 
 <!-- Mobile menu button -->
 <button
@@ -80,6 +82,16 @@
         <span
           class="transition-transform duration-200 ease-in-out group-hover:translate-x-1"
           >الحضور</span
+        >
+      </a>
+      <a
+      {% get_user_club request.user.id as stu_club %}
+        href="{% url 'messageRoom' stu_club.id %}"
+        class="group flex items-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-150 ease-in-out text-black hover:bg-indigo-100 hover:text-indigo-800"
+      >
+        <span
+          class="transition-transform duration-200 ease-in-out group-hover:translate-x-1"
+          >الدردشة الجماعية</span
         >
       </a>
 

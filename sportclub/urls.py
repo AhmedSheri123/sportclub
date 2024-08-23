@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('messenger/', include('messenger.urls')),
     path('', include('pages.urls')),
     path('student/', include('students.urls')),
 

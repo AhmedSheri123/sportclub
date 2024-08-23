@@ -52,12 +52,12 @@
             </td>
             <td class="px-4 py-3">
               <a
-                href="{% url 'editService' service.id %}"
+                href="{% url 'editServices' service.id %}"
                 class="text-indigo-600 hover:text-indigo-800 mr-2"
                 >تعديل</a
               >
               <a
-                href="#"
+                href="{% url 'DeleteServices' service.id %}"
                 class="text-red-600 hover:text-red-800 delete-service"
                 data-id="{{ service.id }}"
                 >حذف</a

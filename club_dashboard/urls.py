@@ -28,15 +28,18 @@ urlpatterns = [
 
     #Services
     path('addServices', views.addServices, name="addServices"),
-    path('editServices', views.editServices, name="editServices"),
+    path('editServices/<int:id>', views.editServices, name="editServices"),
+    path('DeleteServices/<int:id>', views.DeleteServices, name="DeleteServices"),
     path('viewServices', views.viewServices, name="viewServices"),
 
     path('addServicesClassification', views.addServicesClassification, name="addServicesClassification"),
-    path('editServicesClassification', views.editServicesClassification, name="editServicesClassification"),
+    path('editServicesClassification/<int:id>', views.editServicesClassification, name="editServicesClassification"),
+    path('DeleteServicesClassification/<int:id>', views.DeleteServicesClassification, name="DeleteServicesClassification"),
     path('viewServicesClassification', views.viewServicesClassification, name="viewServicesClassification"),
 
     #Blog
     path('addArticle', views.addArticle, name="addArticle"),
-    path('editArticle', views.editArticle, name="editArticle"),
+    path('editArticle/<int:id>', views.editArticle, name="editArticle"),
+    path('DeleteArticle/<int:id>', views.DeleteArticle, name="DeleteArticle"),
     path('viewArticles', views.viewArticles, name="viewArticles"),
 ]

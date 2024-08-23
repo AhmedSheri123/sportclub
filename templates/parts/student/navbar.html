@@ -1,3 +1,5 @@
+{% load messenger_tags %}
+
 {% block content %}
 <!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg py-4 z-[999]">
@@ -41,7 +43,8 @@
       </li>
       <li class="w-1/5 sm:w-auto">
         <a
-          href="/student/chat"
+        {% get_user_club request.user.id as stu_club %}
+          href="{% url 'messageRoom' stu_club.id %} "
           class="flex flex-col items-center text-black hover:text-indigo-600"
         >
           <i class="fas fa-comments text-xl mb-1"></i>

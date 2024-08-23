@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
+    'messenger',
     'students',
     'coach_dashboard',
     'accounts',
@@ -73,7 +75,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'sportclub.wsgi.application'
+ASGI_APPLICATION = "sportclub.asgi.application"
+# WSGI_APPLICATION = 'sportclub.wsgi.application'
 
 
 # Database
@@ -86,6 +89,12 @@ DATABASES = {
     }
 }
 
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

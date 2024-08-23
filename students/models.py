@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 
 #Products
 class ProductsClassificationModel(models.Model):
+    club = models.ForeignKey(ClubsModel, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     title = models.CharField(max_length=254, null=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
 
@@ -38,8 +41,15 @@ class ProductsRate(models.Model):
 
 #Services
 class ServicesClassificationModel(models.Model):
+    club = models.ForeignKey(ClubsModel, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     title = models.CharField(max_length=254, null=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
+
+    def __str__(self):
+        return self.title
+
 
 class ServicesModel(models.Model):
     club = models.ForeignKey(ClubsModel, on_delete=models.CASCADE)
@@ -51,7 +61,7 @@ class ServicesModel(models.Model):
     age_to = models.IntegerField()
 
     price = models.DecimalField(max_digits = 6, decimal_places = 2)
-    classification = models.ManyToManyField('ProductsClassificationModel')
+    classification = models.ManyToManyField('ServicesClassificationModel', blank=True)
     is_enabled = models.BooleanField(default=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
 
@@ -62,6 +72,7 @@ class ServicesImage(models.Model):
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
 
 class ServicesRate(models.Model):
+    
     product = models.ForeignKey('ServicesModel', on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     msg = models.TextField()
@@ -72,11 +83,19 @@ class ServicesRate(models.Model):
 
 #Blog
 class BlogClassificationModel(models.Model):
+    club = models.ForeignKey(ClubsModel, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     title = models.CharField(max_length=254, null=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
 
 class Blog(models.Model):
+    club = models.ForeignKey(ClubsModel, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+
     title = models.CharField(max_length=254, null=True)
+    desc = models.CharField(max_length=254, null=True)
     img = models.ImageField(upload_to="blog/imgs/%Y/%m/%d", blank=True, null=True)
     body = models.TextField()
+
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")

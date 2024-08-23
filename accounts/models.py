@@ -14,15 +14,21 @@ AccountTypeChoices = (
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_image_base64 = models.TextField(blank=True, null=True)
     account_type = models.CharField(max_length=250, choices=AccountTypeChoices)
     creation_date = models.DateTimeField(auto_now_add=True)
     director_profile = models.ForeignKey('DirectorProfile', on_delete=models.SET_NULL, null=True, blank=True)
     student_profile = models.ForeignKey('StudentProfile', on_delete=models.SET_NULL, null=True, blank=True)
     Coach_profile = models.ForeignKey('CoachProfile', on_delete=models.SET_NULL, null=True, blank=True)
 
+    is_active = models.BooleanField(default=False)
+    last_active_datetime = models.DateTimeField(null=True, blank=True)
+    
+    is_in_chat = models.BooleanField(default=False)
 
 class ClubsModel(models.Model):
     name = models.CharField(max_length=250, null=True, verbose_name="اسم الاكادمية")
+    club_profile_image_base64 = models.TextField(blank=True, null=True)
     city = models.CharField(max_length=255, choices = citys, null=True, verbose_name="المدينة")
     district = models.CharField(max_length=250, null=True, verbose_name="الحي")
     street = models.CharField(max_length=250, null=True, verbose_name="الشارع")

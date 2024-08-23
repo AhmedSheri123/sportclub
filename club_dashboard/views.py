@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from accounts.models import UserProfile, StudentProfile, CoachProfile
 from django.contrib.auth.models import User
-from .forms import StudentProfileForm, CoachProfileForm
-
+from .forms import StudentProfileForm, CoachProfileForm, ArticleModelForm, ServicesModelForm, ServicesClassificationModelForm
+from students.models import Blog, ServicesModel, ServicesClassificationModel
+from django.utils import timezone
 # Create your views here.
 
 def club_dashboard_index(request):
@@ -34,7 +35,8 @@ def addStudent(request):
         form = StudentProfileForm(request.POST)
         if form.is_valid():
             student = User.objects.create(username=username, email=email)
-            student.set_password(password)
+            if password:
+                student.set_password(password)
             student.save()
 
             student_profile = form.save(commit=False)
@@ -103,7 +105,8 @@ def addCoach(request):
         form = CoachProfileForm(request.POST)
         if form.is_valid():
             coach = User.objects.create(username=username, email=email)
-            coach.set_password(password)
+            if password:
+                coach.set_password(password)
             coach.save()
 
             coach_profile = form.save()
@@ -131,7 +134,8 @@ def editCoach(request, id):
         if form.is_valid():
             coach.username = username
             coach.email = email
-            coach.set_password(password)
+            if password:
+                coach.set_password(password)
             coach.save()
 
             coach_profile = form.save()
@@ -176,33 +180,107 @@ def viewProductsClassification(request):
 
 #Services
 def addServices(request):
-    return render(request, 'club_dashboard/services/addServices.html')
+    user = request.user
+    club = user.userprofile.director_profile.club
+    form = ServicesModelForm()
+    if request.method == 'POST':
+        form = ServicesModelForm(data=request.POST)
+        if form.is_valid():
+            ser = form.save(commit=False)
+            ser.club = club
+            ser.creator = user
+            ser.creation_date = timezone.now()
+            ser.save()
 
-def editServices(request):
-    return render(request, 'club_dashboard/services/editServices.html')
+    return render(request, 'club_dashboard/services/addServices.html', {'form':form})
+
+def editServices(request, id):
+    ser = ServicesModel.objects.get(id=id)
+    form = ServicesModelForm(instance=ser)
+    if request.method == 'POST':
+        form = ServicesModelForm(data=request.POST, instance=ser)
+        if form.is_valid():
+            form.save()
+    return render(request, 'club_dashboard/services/editServices.html', {'form':form})
 
 def viewServices(request):
-    return render(request, 'club_dashboard/services/viewServices.html')
+    services = ServicesModel.objects.all()
 
+    return render(request, 'club_dashboard/services/viewServices.html', {'services':services})
+
+def DeleteServices(request, id):
+    art = ServicesModel.objects.get(id=id)
+    art.delete()
+    return redirect('viewServicesClassification')
 
 def addServicesClassification(request):
-    return render(request, 'club_dashboard/services/Classification/addClassification.html')
+    user = request.user
+    club = user.userprofile.director_profile.club
+    form = ServicesClassificationModelForm()
+    if request.method == 'POST':
+        form = ServicesClassificationModelForm(data=request.POST)
+        if form.is_valid():
+            cla = form.save(commit=False)
+            cla.club = club
+            cla.creator = user
+            cla.creation_date = timezone.now()
+            cla.save()
 
-def editServicesClassification(request):
-    return render(request, 'club_dashboard/services/Classification/editClassification.html')
+
+    return render(request, 'club_dashboard/services/Classification/addClassification.html', {'form':form})
+
+def editServicesClassification(request, id):
+    cla = ServicesClassificationModel.objects.get(id=id)
+    form = ServicesClassificationModelForm(instance=cla)
+    if request.method == 'POST':
+        form = ServicesClassificationModelForm(data=request.POST, instance=cla)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'club_dashboard/services/Classification/editClassification.html', {'form':form})
 
 def viewServicesClassification(request):
-    return render(request, 'club_dashboard/services/Classification/viewClassification.html')
+    classifications = ServicesClassificationModel.objects.all()
+    return render(request, 'club_dashboard/services/Classification/viewClassification.html', {'classifications':classifications})
 
-
+def DeleteServicesClassification(request, id):
+    art = ServicesClassificationModel.objects.get(id=id)
+    art.delete()
+    return redirect('viewServicesClassification')
 
 #Blog
 def addArticle(request):
-    return render(request, 'club_dashboard/blog/addArticle.html')
+    user = request.user
+    club = user.userprofile.director_profile.club
+    form = ArticleModelForm()
+    if request.method == 'POST':
+        form = ArticleModelForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
 
-def editArticle(request):
-    return render(request, 'club_dashboard/blog/editArticle.html')
+            art = form.save(commit=False)
+            art.club = club
+            art.creator = user
+            art.creation_date = timezone.now()
+            art.save()
+        
+
+    return render(request, 'club_dashboard/blog/addArticle.html', {'form':form})
+
+def editArticle(request, id):
+    art = Blog.objects.get(id=id)
+    form = ArticleModelForm(instance=art)
+    if request.method == 'POST':
+        form = ArticleModelForm(data=request.POST, files=request.FILES, instance=art)
+        if form.is_valid():
+            form.save()
+
+    return render(request, 'club_dashboard/blog/editArticle.html', {'form':form})
 
 def viewArticles(request):
-    return render(request, 'club_dashboard/blog/viewArticles.html')
+    arts = Blog.objects.filter()
+    return render(request, 'club_dashboard/blog/viewArticles.html', {'arts':arts})
 
+def DeleteArticle(request, id):
+    art = Blog.objects.get(id=id)
+    art.delete()
+    return redirect('viewArticles')
