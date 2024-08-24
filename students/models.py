@@ -18,7 +18,8 @@ class ProductsModel(models.Model):
     title = models.CharField(max_length=254, null=True)
     desc = models.TextField(null=True)
     price = models.DecimalField(max_digits = 6, decimal_places = 2)
-    classification = models.ManyToManyField('ProductsClassificationModel')
+    stock = models.IntegerField(default=1, null=True)
+    classification = models.ManyToManyField('ProductsClassificationModel', blank=True)
     is_enabled = models.BooleanField(default=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
 

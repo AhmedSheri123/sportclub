@@ -15,9 +15,8 @@
       />
     </div>
     <div class="absolute bottom-0 left-0 right-0 text-center text-white pb-8">
-      <h1 class="text-4xl font-bold mb-2">اسم الفريق</h1>
-      <p class="text-xl">جدة / شارع في جدة</p>
-      {{user.id}}
+      <h1 class="text-4xl font-bold mb-2">{{club.name}}</h1>
+      <p class="text-xl">{{club.get_city_display}} / {{club.district}}</p>
     </div>
   </div>
 
@@ -28,29 +27,24 @@
       <div class="bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-indigo-900 mb-4">من نحن</h2>
         <p class="text-gray-700 mb-4">
-          نحن فريق متميز يسعى لتحقيق أعلى مستويات الأداء في مجالنا. نؤمن بالعمل
-          الجماعي والتطور المستمر لتحقيق أهدافنا. تأسس فريقنا منذ عدة سنوات بهدف
-          تطوير المواهب الرياضية وصقلها لتصل إلى المستويات العالمية.
+          {{club.about}}
         </p>
-        <p class="text-gray-700 mb-4">
+        {% comment %} <p class="text-gray-700 mb-4">
           نتميز بمنهجية تدريب متكاملة تجمع بين التقنيات الحديثة والخبرات
           العريقة. نهتم بتطوير الجوانب البدنية والمهارية والذهنية لكل لاعب، مع
           التركيز على بناء روح الفريق والقيم الرياضية الأصيلة.
-        </p>
-        <p class="text-gray-700">
-          هدفنا ليس فقط تحقيق البطولات، بل أيضًا بناء جيل من الرياضيين المحترفين
-          القادرين على تمثيل وطنهم بأفضل صورة في المحافل الدولية.
-        </p>
+        </p> {% endcomment %}
+
       </div>
 
       <div class="grid md:grid-cols-2 grid-cols-1 gap-6">
         <div class="bg-white rounded-lg p-8 text-center shadow-lg">
           <h3 class="text-2xl font-bold text-indigo-900 mb-4">المدربون</h3>
-          <p class="text-5xl font-bold text-indigo-600">51</p>
+          <p class="text-5xl font-bold text-indigo-600">{{coaches.count}}</p>
         </div>
         <div class="bg-white rounded-lg p-8 text-center shadow-lg">
           <h3 class="text-2xl font-bold text-indigo-900 mb-4">اللاعبون</h3>
-          <p class="text-5xl font-bold text-indigo-600">46</p>
+          <p class="text-5xl font-bold text-indigo-600">{{students.count}}</p>
         </div>
       </div>
 
@@ -58,18 +52,12 @@
       <div class="bg-white rounded-lg shadow-lg p-8">
         <h2 class="text-2xl font-bold text-indigo-900 mb-4">مواعيدي</h2>
         <ul class="space-y-4">
+          {% for appointment in appointments %}
           <li class="flex justify-between items-center border-b pb-2">
             <span class="text-gray-700">تدريب كرة القدم</span>
-            <span class="text-indigo-600">14:00 - 16:00</span>
+            <span class="text-indigo-600">{{appointment.appointment.start_datetime|date:'H:i'}} - {{appointment.appointment.end_datetime|date:'H:i'}}</span>
           </li>
-          <li class="flex justify-between items-center border-b pb-2">
-            <span class="text-gray-700">جلسة لياقة بدنية</span>
-            <span class="text-indigo-600">17:30 - 18:30</span>
-          </li>
-          <li class="flex justify-between items-center border-b pb-2">
-            <span class="text-gray-700">مباراة ودية</span>
-            <span class="text-indigo-600">19:00 - 21:00</span>
-          </li>
+          {% endfor %}
         </ul>
       </div>
     </div>

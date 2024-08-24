@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from accounts.models import UserProfile, StudentProfile, CoachProfile
 from django.contrib.auth.models import User
-from .forms import StudentProfileForm, CoachProfileForm, ArticleModelForm, ServicesModelForm, ServicesClassificationModelForm
-from students.models import Blog, ServicesModel, ServicesClassificationModel
+from .forms import StudentProfileForm, CoachProfileForm, ArticleModelForm, ServicesModelForm, ServicesClassificationModelForm, ProductsModelForm, ProductsClassificationModelForm
+from students.models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel
 from django.utils import timezone
 # Create your views here.
 
@@ -157,25 +157,72 @@ def deleteCoach(request, id):
 
 
 
-def addProductStock(request):
-    return render(request, 'club_dashboard/products/ProductsStock/addProductStock.html')
+def addProduct(request):
+    user = request.user
+    club = user.userprofile.director_profile.club
+    form = ProductsModelForm()
+    if request.method == 'POST':
+        form = ProductsModelForm(data=request.POST)
+        if form.is_valid():
+            ser = form.save(commit=False)
+            ser.club = club
+            ser.creator = user
+            ser.creation_date = timezone.now()
+            ser.save()
+    return render(request, 'club_dashboard/products/ProductsStock/addProductStock.html', {'form':form})
 
-def editProductStock(request):
-    return render(request, 'club_dashboard/products/ProductsStock/editProductStock.html')
+def editProduct(request, id):
+    ser = ProductsModel.objects.get(id=id)
+    form = ProductsModelForm(instance=ser)
+    if request.method == 'POST':
+        form = ProductsModelForm(data=request.POST, instance=ser)
+        if form.is_valid():
+            form.save()
+    return render(request, 'club_dashboard/products/ProductsStock/editProductStock.html', {'form':form})
 
-def viewProductsStock(request):
-    return render(request, 'club_dashboard/products/ProductsStock/viewProductsStock.html')
+def viewProducts(request):
+    products = ProductsModel.objects.filter()
+    return render(request, 'club_dashboard/products/ProductsStock/viewProductsStock.html', {'products':products})
 
+
+def DeleteProduct(request, id):
+    art = ProductsModel.objects.get(id=id)
+    art.delete()
+    return redirect('viewProducts')
 
 def addProductClassification(request):
-    return render(request, 'club_dashboard/products/Classification/addClassification.html')
+    user = request.user
+    club = user.userprofile.director_profile.club
+    form = ProductsClassificationModelForm()
+    if request.method == 'POST':
+        form = ProductsClassificationModelForm(data=request.POST)
+        if form.is_valid():
+            cla = form.save(commit=False)
+            cla.club = club
+            cla.creator = user
+            cla.creation_date = timezone.now()
+            cla.save()
 
-def editProductClassification(request):
-    return render(request, 'club_dashboard/products/Classification/editClassification.html')
+    return render(request, 'club_dashboard/products/Classification/addClassification.html', {'form':form})
+
+def editProductClassification(request, id):
+    cla = ProductsClassificationModel.objects.get(id=id)
+    form = ProductsClassificationModelForm(instance=cla)
+    if request.method == 'POST':
+        form = ProductsClassificationModelForm(data=request.POST, instance=cla)
+        if form.is_valid():
+            form.save()
+    return render(request, 'club_dashboard/products/Classification/editClassification.html', {'form':form})
 
 def viewProductsClassification(request):
-    return render(request, 'club_dashboard/products/Classification/viewClassification.html')
+    classifications = ProductsClassificationModel.objects.all()
 
+    return render(request, 'club_dashboard/products/Classification/viewClassification.html', {'classifications':classifications})
+
+def DeleteProductsClassification(request, id):
+    art = ProductsClassificationModel.objects.get(id=id)
+    art.delete()
+    return redirect('viewProductsClassification')
 
 
 #Services
@@ -211,7 +258,7 @@ def viewServices(request):
 def DeleteServices(request, id):
     art = ServicesModel.objects.get(id=id)
     art.delete()
-    return redirect('viewServicesClassification')
+    return redirect('viewServices')
 
 def addServicesClassification(request):
     user = request.user

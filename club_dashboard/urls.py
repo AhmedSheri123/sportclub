@@ -17,13 +17,15 @@ urlpatterns = [
 
     #Products
 
-    path('addProduct', views.addProductStock, name="addProduct"),
-    path('editProductStock', views.editProductStock, name="editProductStock"),
-    path('viewProductsStock', views.viewProductsStock, name="viewProductsStock"),
+    path('addProduct', views.addProduct, name="addProduct"),
+    path('editProduct/<int:id>', views.editProduct, name="editProduct"),
+    path('DeleteProduct/<int:id>', views.DeleteProduct, name="DeleteProduct"),
+    path('viewProducts', views.viewProducts, name="viewProducts"),
 
     path('addProductClassification', views.addProductClassification, name="addProductClassification"),
-    path('editProductClassification', views.editProductClassification, name="editProductClassification"),
+    path('editProductClassification/<int:id>', views.editProductClassification, name="editProductClassification"),
     path('viewProductsClassification', views.viewProductsClassification, name="viewProductsClassification"),
+    path('DeleteProductsClassification/<int:id>', views.DeleteProductsClassification, name="DeleteProductsClassification"),
 
 
     #Services

@@ -5,7 +5,7 @@ urlpatterns = [
     path('', views.index, name='studentIndex'),
     
     #Products
-    path('viewProducts', views.viewProducts, name='viewProducts'),
+    path('viewProducts', views.viewProducts, name='StudentViewProducts'),
     path('viewProducts/<int:id>', views.viewProductsSpecific, name='viewProductsSpecific'),
 
     #Services

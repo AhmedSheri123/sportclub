@@ -1,6 +1,6 @@
 from django import forms
 from accounts.models import StudentProfile, CoachProfile
-from students.models import Blog, ServicesModel, ProductsClassificationModel, ServicesClassificationModel
+from students.models import Blog, ServicesModel, ProductsClassificationModel, ServicesClassificationModel, ProductsModel
 
 class StudentProfileForm(forms.ModelForm):
 
@@ -60,6 +60,34 @@ class ServicesClassificationModelForm(forms.ModelForm):
 
     class Meta:
         model = ServicesClassificationModel
+        fields = ['title']
+
+        widgets = {
+            'title':forms.TextInput(attrs={'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'})
+        }
+
+
+
+
+class ProductsModelForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductsModel
+        fields = ['title','desc', 'price', 'stock', 'classification', 'is_enabled']
+
+        widgets = {
+        'title': forms.TextInput(attrs={'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
+        'desc': forms.Textarea(attrs={'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
+        'price':forms.NumberInput(attrs={'step': 0.00, 'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
+        'stock':forms.NumberInput(attrs={'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
+        'classification':forms.SelectMultiple(attrs={'class':'w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500'}),
+        'is_enabled':forms.CheckboxInput(),
+        }
+
+class ProductsClassificationModelForm(forms.ModelForm):
+
+    class Meta:
+        model = ProductsClassificationModel
         fields = ['title']
 
         widgets = {
