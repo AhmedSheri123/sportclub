@@ -12,8 +12,8 @@
             />
           </div>
           <div class="mr-6">
-            <h1 class="text-3xl font-bold text-gray-900">محمد العبدالله</h1>
-            <p class="text-xl text-gray-600">مدير نادي الرياضة الذهبي</p>
+            <h1 class="text-3xl font-bold text-gray-900">{{director.full_name}}</h1>
+            <p class="text-xl text-gray-600">مدير نادي {{director.club.name}}</p>
           </div>
         </div>
       </div>
@@ -22,8 +22,7 @@
           نبذة عن مدير النادي
         </h3>
         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          مدير ذو خبرة واسعة في إدارة النوادي الرياضية، يسعى لتطوير المواهب
-          وتحقيق النجاحات على المستوى المحلي والدولي.
+        {{director.about}}
         </p>
       </div>
       <div class="border-t border-gray-200">
@@ -41,7 +40,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">البريد الإلكتروني</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              director@goldenclub.com
+              {{userprofile.user.email}}
             </dd>
           </div>
           <div
@@ -49,7 +48,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">رقم الهاتف</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              +966 (12) 345-6789
+              {{director.phone}}
             </dd>
           </div>
         </dl>

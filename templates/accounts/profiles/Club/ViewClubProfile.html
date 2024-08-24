@@ -13,9 +13,9 @@
           </div>
           <div class="mr-6">
             <h1 class="text-3xl font-bold text-gray-900">
-              نادي الرياضة الذهبي
+              {{club.name}}
             </h1>
-            <p class="text-xl text-gray-600">نادي رياضي متميز</p>
+            <p class="text-xl text-gray-600">{{club.desc}}</p>
           </div>
         </div>
       </div>
@@ -24,11 +24,10 @@
           نبذة عن النادي
         </h3>
         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          نادي رياضي رائد يهدف إلى تطوير المواهب الرياضية وتعزيز روح الفريق
-          والمنافسة الشريفة.
+          {{club.about}}
         </p>
       </div>
-      <div class="border-t border-gray-200">
+      {% comment %} <div class="border-t border-gray-200">
         <dl>
           <div
             class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
@@ -55,7 +54,7 @@
             </dd>
           </div>
         </dl>
-      </div>
+      </div> {% endcomment %}
       <div class="px-6 py-4 bg-gray-50 sm:px-10 flex justify-end">
         <a
           href="#"

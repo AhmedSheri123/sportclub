@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from .fields import citys
+import datetime
+from django.utils import timezone
 # Create your models here.
 
 
@@ -29,6 +31,8 @@ class UserProfile(models.Model):
 class ClubsModel(models.Model):
     name = models.CharField(max_length=250, null=True, verbose_name="اسم الاكادمية")
     club_profile_image_base64 = models.TextField(blank=True, null=True)
+    desc = models.CharField(max_length=255, null=True, verbose_name="وصف قصير")
+    about = models.TextField(max_length=255, null=True, verbose_name="نبذة")
     city = models.CharField(max_length=255, choices = citys, null=True, verbose_name="المدينة")
     district = models.CharField(max_length=250, null=True, verbose_name="الحي")
     street = models.CharField(max_length=250, null=True, verbose_name="الشارع")
@@ -40,6 +44,8 @@ class ClubsModel(models.Model):
 class DirectorProfile(models.Model):
     full_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
+    about = models.TextField(null=True)
+
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
@@ -54,17 +60,24 @@ class StudentProfile(models.Model):
     has_subscription = models.BooleanField(default=False)
     subscription_start_date = models.DateTimeField(null=True, blank=True)
     subscription_end_date = models.DateTimeField(null=True, blank=True)
-
+    about = models.TextField(null=True)
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.full_name)
 
+    def age(self):
+        age = int(((timezone.now().date()-self.birthday).days) / 365)
+        return age
+
 class CoachProfile(models.Model):
     full_name = models.CharField(max_length=50)
     phone = models.CharField(max_length=50)
     stadium = models.CharField(max_length=50)
+    major = models.CharField(max_length=50, null=True)
+    about = models.TextField(null=True)
+
     club = models.ForeignKey('ClubsModel', on_delete=models.SET_NULL, null=True)
     creation_date = models.DateTimeField(auto_now_add=True)
 

@@ -12,7 +12,7 @@
             />
           </div>
           <div class="mr-6">
-            <h1 class="text-3xl font-bold text-gray-900">{{ student.name }}</h1>
+            <h1 class="text-3xl font-bold text-gray-900">{{ student.full_name }}</h1>
             <p class="text-xl text-gray-600">طالب في {{ student.club.name }}</p>
           </div>
         </div>
@@ -38,7 +38,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">البريد الإلكتروني</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ student.email }}
+              {{ userprofile.user.email }}
             </dd>
           </div>
           <div
@@ -46,7 +46,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">رقم الهاتف</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {{ student.phone_number }}
+              {{ student.phone }}
             </dd>
           </div>
           <div

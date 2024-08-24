@@ -12,8 +12,8 @@
             />
           </div>
           <div class="mr-6">
-            <h1 class="text-3xl font-bold text-gray-900">خضر كراويتة</h1>
-            <p class="text-xl text-gray-600">مدرب في نادي ابطال الكرة</p>
+            <h1 class="text-3xl font-bold text-gray-900">{{coach.full_name}}</h1>
+            <p class="text-xl text-gray-600">مدرب في نادي {{coach.club.name}}</p>
           </div>
         </div>
       </div>
@@ -22,7 +22,7 @@
           نبذة عن المدرب
         </h3>
         <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          مدرب ذو خبرة لديه شغف لتطوير المواهب الشابة وتعزيز بيئة فريق إيجابية.
+          {{coach.about}}
         </p>
       </div>
       <div class="border-t border-gray-200">
@@ -40,7 +40,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">البريد الإلكتروني</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              johndoe@example.com
+              {{userprofile.user.email}}
             </dd>
           </div>
           <div
@@ -48,7 +48,7 @@
           >
             <dt class="text-sm font-medium text-gray-500">رقم الهاتف</dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              +1 (555) 123-4567
+              {{coach.phone}}
             </dd>
           </div>
         </dl>
