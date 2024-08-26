@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from accounts.models import UserProfile, StudentProfile, CoachProfile
 from django.contrib.auth.models import User
 from .forms import StudentProfileForm, CoachProfileForm, ArticleModelForm, ServicesModelForm, ServicesClassificationModelForm, ProductsModelForm, ProductsClassificationModelForm
-from students.models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel
+from students.models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel, ProductsImage, ServicesImage
 from django.utils import timezone
 # Create your views here.
 
@@ -169,16 +169,36 @@ def addProduct(request):
             ser.creator = user
             ser.creation_date = timezone.now()
             ser.save()
+            profile_imgs = request.POST.getlist('profile_imgs')
+            for img in profile_imgs:
+                img_obj = ProductsImage.objects.create(product=ser)
+                img_obj.img_base64 = img
+                img_obj.creation_date = timezone.now()
+                img_obj.save()
+            
     return render(request, 'club_dashboard/products/ProductsStock/addProductStock.html', {'form':form})
 
 def editProduct(request, id):
     ser = ProductsModel.objects.get(id=id)
+    profile_img_objs = ProductsImage.objects.filter(product=ser)
     form = ProductsModelForm(instance=ser)
     if request.method == 'POST':
         form = ProductsModelForm(data=request.POST, instance=ser)
         if form.is_valid():
+            profile_imgs = request.POST.getlist('profile_imgs')
             form.save()
-    return render(request, 'club_dashboard/products/ProductsStock/editProductStock.html', {'form':form})
+
+            old_imgs = ProductsImage.objects.filter(product=ser)
+            for old_img in old_imgs:
+                old_img.delete()
+
+            for img in profile_imgs:
+                img_obj = ProductsImage.objects.create(product=ser)
+                img_obj.img_base64 = img
+                img_obj.creation_date = timezone.now()
+                img_obj.save()
+            
+    return render(request, 'club_dashboard/products/ProductsStock/editProductStock.html', {'form':form, 'profile_imgs':profile_img_objs})
 
 def viewProducts(request):
     products = ProductsModel.objects.filter()
@@ -239,16 +259,35 @@ def addServices(request):
             ser.creation_date = timezone.now()
             ser.save()
 
+            profile_imgs = request.POST.getlist('profile_imgs')
+            for img in profile_imgs:
+                img_obj = ServicesImage.objects.create(product=ser)
+                img_obj.img_base64 = img
+                img_obj.creation_date = timezone.now()
+                img_obj.save()
+
     return render(request, 'club_dashboard/services/addServices.html', {'form':form})
 
 def editServices(request, id):
     ser = ServicesModel.objects.get(id=id)
+    profile_img_objs = ServicesImage.objects.filter(product=ser)
     form = ServicesModelForm(instance=ser)
     if request.method == 'POST':
         form = ServicesModelForm(data=request.POST, instance=ser)
         if form.is_valid():
+            profile_imgs = request.POST.getlist('profile_imgs')
             form.save()
-    return render(request, 'club_dashboard/services/editServices.html', {'form':form})
+
+            old_imgs = ServicesImage.objects.filter(product=ser)
+            for old_img in old_imgs:
+                old_img.delete()
+
+            for img in profile_imgs:
+                img_obj = ServicesImage.objects.create(product=ser)
+                img_obj.img_base64 = img
+                img_obj.creation_date = timezone.now()
+                img_obj.save()
+    return render(request, 'club_dashboard/services/editServices.html', {'form':form, 'profile_imgs':profile_img_objs})
 
 def viewServices(request):
     services = ServicesModel.objects.all()

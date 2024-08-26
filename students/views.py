@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel
+from .models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel, ProductsImage, ServicesImage
 from django.contrib.auth.models import User
 from accounts.models import UserProfile, ClubsModel, CoachProfile, StudentProfile
 from coach_dashboard.models import StudentAppointmentPresenceModel
@@ -20,11 +20,13 @@ def viewProducts(request):
     user = request.user
     club = user.userprofile.student_profile.club
     products = ProductsModel.objects.filter(club=club)
-    
+
     classifications = ProductsClassificationModel.objects.filter(club=club)
     return render(request, 'student/products/viewProducts.html', {'products':products, 'classifications':classifications})
 
 def viewProductsSpecific(request, id):
+    profile_img_objs = ServicesImage.objects.filter(product=product)
+
     user = request.user
     club = user.userprofile.student_profile.club
 
