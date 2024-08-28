@@ -74,27 +74,24 @@
         <!-- Swiper -->
         <div class="swiper-container relative">
           <div class="swiper-wrapper">
+            {% get_product_imgs product.id as imgs %}
+            {% for img in imgs %}
+            <div class="swiper-slide">
+              <img
+                src="{{img.img_base64}}"
+                class="w-full object-cover rounded-lg"
+                alt=" 1"
+              />
+            </div>
+            {% empty %}
             <div class="swiper-slide">
               <img
                 src="https://via.placeholder.com/400x300"
                 class="w-full object-cover rounded-lg"
-                alt="{{product.title}} 1"
+                alt="{{img.title}} 1"
               />
             </div>
-            <div class="swiper-slide">
-              <img
-                src="https://via.placeholder.com/400x300"
-                class="w-full object-cover rounded-lg"
-                alt="{{product.title}} 2"
-              />
-            </div>
-            <div class="swiper-slide">
-              <img
-                src="https://via.placeholder.com/400x300"
-                class="w-full object-cover rounded-lg"
-                alt="{{product.title}} 3"
-              />
-            </div>
+            {% endfor %}
           </div>
           <!-- Custom Pagination -->
           <div class="swiper-pagination custom-pagination"></div>

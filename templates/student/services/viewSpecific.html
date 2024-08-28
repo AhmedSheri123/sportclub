@@ -1,4 +1,4 @@
-{% extends "base_student.html" %} {% load static %} {% block content %}
+{% extends "base_student.html" %} {% load students_tags %} {% load static %} {% block content %}
 <link
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
@@ -43,27 +43,26 @@
         <!-- Service Image Swiper -->
         <div class="md:w-1/2 relative swiper-container">
           <div class="swiper-wrapper">
+
+            {% get_Service_imgs service.id as imgs %}
+            {% for img in imgs %}
             <div class="swiper-slide">
               <img
-                src="https://via.placeholder.com/600x400"
-                alt="Service Image 1"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                src="{{img.img_base64}}"
+                class="w-full object-cover rounded-lg"
+                alt=" 1"
               />
             </div>
+            {% empty %}
             <div class="swiper-slide">
               <img
-                src="https://via.placeholder.com/600x400"
-                alt="Service Image 2"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                src="https://via.placeholder.com/400x300"
+                class="w-full object-cover rounded-lg"
+                alt="{{img.title}} 1"
               />
             </div>
-            <div class="swiper-slide">
-              <img
-                src="https://via.placeholder.com/600x400"
-                alt="Service Image 3"
-                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-              />
-            </div>
+            {% endfor %}
+
           </div>
           <div class="swiper-pagination"></div>
           <div class="swiper-button-next"></div>

@@ -25,7 +25,6 @@ def viewProducts(request):
     return render(request, 'student/products/viewProducts.html', {'products':products, 'classifications':classifications})
 
 def viewProductsSpecific(request, id):
-    profile_img_objs = ServicesImage.objects.filter(product=product)
 
     user = request.user
     club = user.userprofile.student_profile.club
