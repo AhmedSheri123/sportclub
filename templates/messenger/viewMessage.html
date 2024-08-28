@@ -3,340 +3,247 @@
 {% load messenger_tags %}
 
 {% block links %}
-<link rel="stylesheet" href="{% static 'bootstrap-5.3.3/css/bootstrap.rtl.min.css'%}" integrity="sha384-dpuaG1suU0eT09tx5plTaGMLBsfDLzUCCUXOY2j/LSvXYuG6Bqs43ALlhIqAJVRb" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 {% endblock links %}
 
-{% load static %}
-
 {% block content %}
-<div >
-
-
-    <div dir="rtl" id="main" style=" padding: 0; height: 100vh;">
-        <div  class="bg-primary text-white fixed-top" style="padding:10px 20px;  box-shadow: rgb(177, 177, 177) 0px 0px 3px; margin: auto;">
-    
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center;">
-                    {% if profile_image %}
-                        <img src="{{profile_image}}" alt="" style="width: 50px; border-radius: 100%;">
-                    {% else %}
-                    <img src="{% static '/img/default-profile-img-2.png' %}" alt="" style="width: 50px; border-radius: 100%;">
-                    {% endif %}
-                    <h5 style="margin-right: 10px;">{{name.username}}</h5>
-            
-                </div>
-    
-                <a id="MsgSettings" tabindex="0" role="button" data-bs-toggle="popover" title="الرسائل" class="text-white" style="font-size: 25px;"><i class="bi bi-three-dots-vertical"></i></a>
-            </div>
-        </div>
-    
-        <div id="msg-container-box">
-            <div id="msg-container-box2" style="padding-top: 100px;">
-                {% for messages in messages_list %}
-                <p style="padding: 25px 0px; display: block; margin: auto;text-align: center;">{{messages.0|date:'Y-m-d'}}</p>
-                {% for message in messages.1 %}
-                {% if message.sender == request.user %}
-                <div class="sender">
-                    <div class="bg-primary text-white">
-                        <p>{{message.msg}}</p>
-                        <span>{{message.creation_date|date:'H:i'}}</span>
-
-                        <i id="msg-status-{{message.id}}" class="bi {% if message.is_readed%}bi-check2-all{%else%}bi-check2{%endif%}"></i>
-
-                    </div>
-                </div>
-                {% else %}
-                {% get_user_full_name_temp message.sender.id as full_name %}
-                {% get_user_capacity_temp message.sender.id as user_capacity %}
-                <div class="receiver">
-                    <div class="bg-light r-msg-main-box">
-                        <div class="r-msg-box">
-                            <p class="username text-success"><span class="text-danger">{{user_capacity}}</span> - {{full_name}}</p>
-
-                            <p>{{message.msg}}</p>
-                        </div>
-                        <span>{{message.creation_date|date:'H:i'}}</span>
-                    </div>
-                </div>
-                {% endif %}
-                {% endfor %}
-                {% endfor %}
-
-
-                <div class="sender-form-box fixed-bottom bg-primary">
-                    <form id="form" onsubmit="event.preventDefault();" style="display: contents;">
-                        <input type="text" class="form-control" placeholder="اكتب رسالة" id="senderMsg">
-        
-        
-                        <button class="btn btn-primary">
-                            <i style="font-size: 20px;" class="bi bi-send-fill"></i>
-                        </button>
-                    </form>
-                </div>
-
-            </div>    
-    
-
-
-        </div>
-    
-        
+<div class="h-screen flex flex-col bg-gray-100">
+  <div class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white fixed top-0 left-0 right-0 z-10 shadow-lg">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        {% if profile_image %}
+        <img src="{{profile_image}}" alt="" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white" />
+        {% else %}
+        <img src="{% static '/img/default-profile-img-2.png' %}" alt="" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover border-2 border-white" />
+        {% endif %}
+        <h5 class="text-lg sm:text-xl font-bold">{{name.username}}</h5>
+      </div>
     </div>
+  </div>
 
+  <div class="flex-grow overflow-y-auto pt-20 pb-24" id="msg-container-box">
+    <div class="max-w-4xl mx-auto px-4 py-8" id="msg-container-box2">
+      {% for messages in messages_list %}
+      <p class="text-center text-sm text-gray-500 my-6">
+        {{messages.0|date:'Y-m-d'}}
+      </p>
+      {% for message in messages.1 %}
+      {% if message.sender == request.user %}
+      <div class="flex justify-end mb-4">
+        <div class="bg-indigo-600 text-white rounded-lg px-4 py-2 max-w-xs lg:max-w-md shadow-md transform transition-all duration-300 hover:scale-105">
+          <p class="text-sm">{{message.msg}}</p>
+          <div class="flex items-center justify-end mt-1">
+            <span class="text-xs opacity-75">{{message.creation_date|date:'H:i'}}</span>
+            <i id="msg-status-{{message.id}}" class="bi {% if message.is_readed %}bi-check2-all{% else %}bi-check2{% endif %} ml-1 text-xs"></i>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      {% get_user_full_name_temp message.sender.id as full_name %}
+      {% get_user_capacity_temp message.sender.id as user_capacity %}
+      <div class="flex mb-4">
+        <div class="bg-white rounded-lg px-4 py-2 max-w-xs lg:max-w-md shadow-md transform transition-all duration-300 hover:scale-105">
+          <p class="text-xs font-medium">
+            <span class="text-red-500">{{user_capacity}}</span> -
+            <span class="text-green-600 cursor-pointer user-name" data-user-id="{{message.sender.id}}">{{full_name}}</span>
+          </p>
+          <p class="text-sm mt-1">{{message.msg}}</p>
+          <span class="text-xs text-gray-500 block text-right mt-1">{{message.creation_date|date:'H:i'}}</span>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-3">
+    <form id="form" class="flex items-center gap-2 max-w-4xl mx-auto" onsubmit="event.preventDefault(); SendMsg();">
+      <input type="text" id="senderMsg" class="flex-grow mr-2 px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300 ease-in-out" placeholder="اكتب رسالة" />
+      <button type="submit" class="bg-indigo-600 text-white rounded-full px-3 py-1 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300 ease-in-out transform hover:scale-105">
+        <i class="bi bi-send-fill text-lg transform rotate-45"></i>
+      </button>
+    </form>
+  </div>
 </div>
 
-<div data-name="popover-content-msg-settings" id="popover-content-msg-settings" class="d-none" style="width: min(100%, 400px);">
-    <a href="" class="btn btn-info " style="display: block; width: 100%;">عرض الملف الشخصي</a>
-    
-    {% if not is_favorite %}
-    <a href="?redir=True" class="btn btn-warning mt-1" style="display: block; width: 100%;">اضافة الى مفضلة</a>
-    {% else %}
-    <a href="?redir=True" class="btn btn-warning mt-1" style="display: block; width: 100%;">ازالة من المفضلة</a>
-    {% endif %}
-
-    {% if not is_blocked %}
-    <a href="?redir=True" class="btn btn-danger mt-1" style="display: block; width: 100%;">حظر</a>
-    {% else %}
-    <a href="?redir=True" class="btn btn-danger mt-1" style="display: block; width: 100%;">الغاء الحظر</a>
-    {% endif %}
-</div>
-
-
-
-
-
-<script type='text/javascript'>
-    
-            
-    $(document).ready(function() {
-        
-
-        var optionsMsgSettings = {
-            sanitize: false,
-            html: true,
-            title: "خيارات",
-            customClass: 'MessagesPopover',
-            //html element
-            //content: $("#popover-content")
-            content: $('[data-name="popover-content-msg-settings"]').html(),
-            //Doing below won't work. Shows title only
-            //content: $("#popover-content").html()
-            fallbackPlacements : ['right']
-        }
-
-
-
-
-        var exampleElMsgSettings = document.getElementById('MsgSettings')
-        var popover = new bootstrap.Popover(exampleElMsgSettings, optionsMsgSettings)
-
-
-    })
-
-    // $(function () {
-    //         $('[data-bs-toggle="popover"]').popover()
-    //     })
-</script>
-
-
-<style>
-.popover-header {text-align: right;}
-* {
-            font-family: Arial, Helvetica, sans-serif !important;
-            letter-spacing: .3px;
-          }
-
-    .sender {display: flex; flex-direction: row; padding: 4px;}
-    .receiver p {border-radius: 15px; padding: 0px; margin: 0 !important;}
-    
-    .receiver .username {
-        font-size: 12px;
-    }
-    
-    .receiver .username span {
-        padding: 0;
-    }
-    .r-msg-main-box {
-        padding: 5px 10px;
-    }
-
-    .sender div, .receiver div{
-        border-radius: 15px;
-        display: flex;
-        align-items: flex-end;
-    }
-    .sender p {
-        margin: 0 !important;
-        padding: 10px;
-
-    }
-
-    .sender span{
-        font-size: 12px;
-        padding: 3px 0px;
-    }
-
-    .receiver span {
-        font-size: 12px;
-        padding: 0 6px;
-    }
-
-    .sender i {padding: 3px; padding-left: 6px;}
-
-    .receiver {display: flex; flex-direction: row-reverse; padding: 4px;}
-
-    .receiver .r-msg-box {
-        display: flex; flex-direction: column; align-items: flex-start;
-    }
-    .sender-form-box {width: min(100%, 768px);padding: 2px 20px; margin: auto;
-         /* bottom: 0; right: 0;position: absolute; */
-        /* right: -17px !important; */
-        display: flex; align-items: center; justify-content: space-between;flex-direction: row;
-    }
-    .sender-form-box button {border-radius: 100%; transform: rotateZ(225deg); margin: 10px 0;margin-right: 6px;}
-
-    #msg-container-box {box-shadow: inset #6a6a6a 0px 15px 15px -13px !important; background-color: #f1f1f1; box-shadow: rgb(177, 177, 177) 0px 0px 3px;height: 100%; display: contents;}
-    #msg-container-box2 {    box-shadow: rgb(177, 177, 177) 0px 0px 3px; background-color: #f1f1f1; width: min(100%, 768px);position: relative;padding: 20px;margin: auto;display: block; padding-bottom: 75px;min-height: 100vh;}
-    body {
-        margin-bottom:0 !important;
-    }
-
-</style>
+<dialog id="user-dialog" class="bg-white rounded-lg shadow-xl p-4 w-64">
+  <a href="" id="view-profile" class="block w-full text-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mb-2 transition duration-300 ease-in-out">
+    عرض الملف الشخصي
+  </a>
+  <button id="toggleFavorite" class="block w-full text-center bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-4 rounded mb-2 transition duration-300 ease-in-out">
+    {% if not is_favorite %}اضافة الى مفضلة{% else %}ازالة من المفضلة{% endif %}
+  </button>
+  <button id="toggleBlock" class="block w-full text-center bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+    {% if not is_blocked %}حظر{% else %}الغاء الحظر{% endif %}
+  </button>
+  <button id="close-dialog" class="mt-4 block w-full text-center bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded transition duration-300 ease-in-out">
+    إغلاق
+  </button>
+</dialog>
 
 <script>
-    let user_id = {{request.user.id}}
+  document.addEventListener('DOMContentLoaded', function() {
+    const dialog = document.getElementById('user-dialog');
+    const toggleFavorite = document.getElementById('toggleFavorite');
+    const toggleBlock = document.getElementById('toggleBlock');
+    const viewProfile = document.getElementById('view-profile');
+    const closeDialog = document.getElementById('close-dialog');
+    let currentUserId = null;
 
-    function scrollToBottom(){
-        let msgBox = document.querySelector('#msg-container-box2')
-        window.scrollTo(0, msgBox.scrollHeight);
-    }
+    document.addEventListener('click', function(e) {
+      const userNameElement = e.target.closest('.user-name');
+      if (userNameElement) {
+        e.preventDefault();
+        const userId = userNameElement.dataset.userId;
+        currentUserId = userId;
 
+        // Update view profile link
+        viewProfile.href = `/profile/${userId}/`;
 
-scrollToBottom()
-  window.addEventListener("load",init);
-  function init() { 
-    document.getElementById("form").addEventListener("submit",function(e) {
+        // Check if user is favorite or blocked and update buttons
+        fetch(`/api/user-status/${userId}/`)
+          .then(response => response.json())
+          .then(data => {
+            toggleFavorite.textContent = data.is_favorite ? 'ازالة من المفضلة' : 'اضافة الى مفضلة';
+            toggleBlock.textContent = data.is_blocked ? 'الغاء الحظر' : 'حظر';
+          });
+
+        dialog.showModal();
+      }
+    });
+
+    closeDialog.addEventListener('click', function() {
+      dialog.close();
+    });
+
+    toggleFavorite.addEventListener('click', function() {
+      if (currentUserId) {
+        fetch(`/api/toggle-favorite/${currentUserId}/`, { method: 'POST' })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.textContent = data.is_favorite ? 'ازالة من المفضلة' : 'اضافة الى مفضلة';
+            }
+          });
+      }
+    });
+
+    toggleBlock.addEventListener('click', function() {
+      if (currentUserId) {
+        fetch(`/api/toggle-block/${currentUserId}/`, { method: 'POST' })
+          .then(response => response.json())
+          .then(data => {
+            if (data.success) {
+              this.textContent = data.is_blocked ? 'الغاء الحظر' : 'حظر';
+            }
+          });
+      }
+    });
+  });
+
+  function scrollToBottom() {
+    let msgBox = document.querySelector('#msg-container-box')
+    msgBox.scrollTop = msgBox.scrollHeight;
+  }
+
+  scrollToBottom()
+  window.addEventListener("load", init);
+  function init() {
+    document.getElementById("form").addEventListener("submit", function(e) {
       e.preventDefault();
       SendMsg()
     });
   }
 
+  let user_id = {{request.user.id}}
 
+  let url = `ws://${window.location.host}/ws/socket-server/{{room_id}}/`
+  const chatSocket = new WebSocket(url)
+  function send(query) {
+    chatSocket.send(
+      JSON.stringify(query)
+    )
+  }
 
-
-    let url = `ws://${window.location.host}/ws/socket-server/{{room_id}}/`
-    const chatSocket = new WebSocket(url)
-    function send(query){
-        chatSocket.send(
-            JSON.stringify(query)
-        )
-    }
-
-    chatSocket.onmessage = function(e){
-        let data = JSON.parse(e.data)
-        if (data.user_id != user_id) {
-            if (data.method == 'send_msg') {
-
-                ReceiveMsg(data);
-                
-                send({
-                    'method': 'msg_readed',
-                    'msg_id':data.msg_id
-                });
-            }
-
-
-            else if (data.method == 'msg_readed') {
-                let msg_obj = document.querySelector(`#msg-status-${data.msg_id}`)
-                msg_obj.classList.remove('bi-check2')
-                msg_obj.classList.add('bi-check2-all')
-            }
-
-
-            else if (data.method == 'msg_read_all') {
-                let msg_objs = document.querySelectorAll(`.sender i`)
-                msg_objs.forEach(msg_obj => {
-                    if (!msg_obj.classList.contains('bi-check2-all')) {
-                        msg_obj.classList.remove('bi-check2')
-                        msg_obj.classList.add('bi-check2-all')
-                    
-                    }
-                })
-
-            }
-        }
-
-        else if (data.user_id == user_id) {
-            if (data.method == 'send_msg') {
-                let msg_html = `
-
-
-                    <div class="sender" >
-                        <div class="bg-primary text-white">
-                            <p>${data.message}</p>
-                            <span>${data.creation_date}</span>
-                            <i id="msg-status-${data.msg_id}" class="bi bi-check2"></i>
-
-                        </div>
-                    </div>
-                `
-                let msgBox = document.querySelector('#msg-container-box2')
-                msgBox.insertAdjacentHTML('beforeend', msg_html)
-                scrollToBottom()
-
-                if (data.send_toast) {
-                    send_noti({
-                        'type': 'showToast',
-                        'method':'showToast',
-                        'receiver_id': data.receiver_id,
-                        'msg_id': data.msg_id,
-                    })
-                }
-
-                
-            }
-
-
-        }
-    }
-
-
-
-    function SendMsg(){
-        let msg = document.querySelector('#senderMsg')
-
-        if (!msg.value) {return false}
-
-        
+  chatSocket.onmessage = function(e) {
+    let data = JSON.parse(e.data)
+    if (data.user_id != user_id) {
+      if (data.method == 'send_msg') {
+        ReceiveMsg(data);
         send({
-                'method': 'send_msg',
-                'message': msg.value
-            })
-
-        msg.value = ""
-        return false
-    }
-
-
-    function ReceiveMsg(data){
-        let msgBox = document.querySelector('#msg-container-box2')
+          'method': 'msg_readed',
+          'msg_id': data.msg_id
+        });
+      } else if (data.method == 'msg_readed') {
+        let msg_obj = document.querySelector(`#msg-status-${data.msg_id}`)
+        msg_obj.classList.remove('bi-check2')
+        msg_obj.classList.add('bi-check2-all')
+      } else if (data.method == 'msg_read_all') {
+        let msg_objs = document.querySelectorAll(`.sender i`)
+        msg_objs.forEach(msg_obj => {
+          if (!msg_obj.classList.contains('bi-check2-all')) {
+            msg_obj.classList.remove('bi-check2')
+            msg_obj.classList.add('bi-check2-all')
+          }
+        })
+      }
+    } else if (data.user_id == user_id) {
+      if (data.method == 'send_msg') {
         let msg_html = `
-                <div class="receiver">
-                    <div class="bg-light r-msg-main-box">
-                        <div class="r-msg-box">
-                            <p class="username text-success"><span class="text-danger">${data.user_capacity}</span> - ${data.full_name}</p>
-                            <p>${data.message}</p>
-                        </div>
-                        <span>${data.creation_date}</span>
-                    </div>
-                </div>
+          <div class="flex justify-end mb-4">
+            <div class="bg-indigo-600 text-white rounded-lg px-4 py-2 max-w-xs lg:max-w-md shadow-md transform transition-all duration-300 hover:scale-105">
+              <p class="text-sm">${data.message}</p>
+              <div class="flex items-center justify-end mt-1">
+                <span class="text-xs opacity-75">${data.creation_date}</span>
+                <i id="msg-status-${data.msg_id}" class="bi bi-check2 ml-1 text-xs"></i>
+              </div>
+            </div>
+          </div>
         `
+        let msgBox = document.querySelector('#msg-container-box2')
         msgBox.insertAdjacentHTML('beforeend', msg_html)
         scrollToBottom()
+
+        if (data.send_toast) {
+          send_noti({
+            'type': 'showToast',
+            'method': 'showToast',
+            'receiver_id': data.receiver_id,
+            'msg_id': data.msg_id,
+          })
+        }
+      }
     }
+  }
 
+  function SendMsg() {
+    let msg = document.querySelector('#senderMsg')
+    if (!msg.value) return false
+    send({
+      'method': 'send_msg',
+      'message': msg.value
+    })
+    msg.value = ""
+    return false
+  }
 
+  function ReceiveMsg(data) {
+    let msgBox = document.querySelector('#msg-container-box2')
+    let msg_html = `
+      <div class="flex mb-4">
+        <div class="bg-white rounded-lg px-4 py-2 max-w-xs lg:max-w-md shadow-md transform transition-all duration-300 hover:scale-105">
+          <p class="text-xs font-medium">
+            <span class="text-red-500">${data.user_capacity}</span> - <span class="text-green-600 cursor-pointer user-name" data-user-id="${data.user_id}">${data.full_name}</span>
+          </p>
+          <p class="text-sm mt-1">${data.message}</p>
+          <span class="text-xs text-gray-500 block text-right mt-1">${data.creation_date}</span>
+        </div>
+      </div>
+    `
+    msgBox.insertAdjacentHTML('beforeend', msg_html)
+    scrollToBottom()
+  }
 </script>
-{% endblock content %}
+{% endblock %}
