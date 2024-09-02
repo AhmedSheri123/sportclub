@@ -65,6 +65,8 @@ class ServicesModel(models.Model):
     classification = models.ManyToManyField('ServicesClassificationModel', blank=True)
     is_enabled = models.BooleanField(default=True)
     creation_date = models.DateTimeField(null=True, verbose_name="تاريخ الانشاء")
+    def __str__(self):
+        return self.title
 
 class ServicesImage(models.Model):
     product = models.ForeignKey('ServicesModel', on_delete=models.CASCADE)

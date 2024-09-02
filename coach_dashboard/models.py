@@ -1,9 +1,11 @@
 from django.db import models
 from accounts.models import CoachProfile, StudentProfile
+from students.models import ServicesModel
 # Create your models here.
 
 class CoachAppointmentsModel(models.Model):
     coach = models.ForeignKey(CoachProfile, on_delete=models.CASCADE)
+    service = models.ForeignKey(ServicesModel, on_delete=models.CASCADE, null=True)
     start_datetime = models.DateTimeField()
     end_datetime = models.DateTimeField()
 

@@ -17,17 +17,21 @@ def index(request):
 
 
 def Profile(request, id):
-    user = User.objects.get(id=id)
-    userprofile = user.userprofile
+    is_club = request.GET.get('is_club')
 
-    if userprofile.account_type == '2':
-        return ViewDirectorProfile(request, id)
-    elif user.userprofile.account_type == '3':
-        return ViewStudentProfile(request, id)
-    elif user.userprofile.account_type == '4':
-        return ViewCoachProfile(request, id)
+    if is_club:
+        return ViewClubProfile(request, id)
     else:
-        return redirect('index')
+        user = User.objects.get(id=id)
+        userprofile = user.userprofile
+        if userprofile.account_type == '2':
+            return ViewDirectorProfile(request, id)
+        elif user.userprofile.account_type == '3':
+            return ViewStudentProfile(request, id)
+        elif user.userprofile.account_type == '4':
+            return ViewCoachProfile(request, id)
+        else:
+            return redirect('index')
 
 
 def ViewClubProfile(request, id):

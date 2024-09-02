@@ -20,9 +20,10 @@ def viewCoachAppointments(request):
 
 def addCoachAppointments(request):
     user = request.user
-    form = CoachAppointmentsForm
+    coach = user.userprofile.Coach_profile
+    form = CoachAppointmentsForm(coach=coach)
     if request.method == 'POST':
-        form = CoachAppointmentsForm(request.POST)
+        form = CoachAppointmentsForm(request.POST, coach=coach)
         if form.is_valid():
             student_profile = form.save(commit=False)
             student_profile.coach = user.userprofile.Coach_profile
@@ -33,10 +34,11 @@ def addCoachAppointments(request):
     return render(request, 'coach_dashboard/CoachAppointments/addCoachAppointments.html', {'form':form})
 
 def editCoachAppointments(request, id):
+    coach = request.user.userprofile.Coach_profile
     CoachAppointment = CoachAppointmentsModel.objects.get(id=id)
-    form = CoachAppointmentsForm(instance=CoachAppointment)
+    form = CoachAppointmentsForm(instance=CoachAppointment, coach=coach)
     if request.method == 'POST':
-        form = CoachAppointmentsForm(request.POST, instance=CoachAppointment)
+        form = CoachAppointmentsForm(request.POST, instance=CoachAppointment, coach=coach)
         if form.is_valid():
             form.save()
             student_profile = form.save(commit=False)
