@@ -16,4 +16,8 @@ urlpatterns = [
     path('viewStudentAppointmentPresences', views.viewStudentAppointmentPresences, name="viewStudentAppointmentPresences"),
     path('editStudentAppointmentPresence/<int:id>', views.editStudentAppointmentPresence, name="editStudentAppointmentPresence"),
     path('deleteStudentAppointmentPresence/<int:id>', views.deleteStudentAppointmentPresence, name="deleteStudentAppointmentPresence"),
+
+
+
+    path('getServiceStudents/<int:service_id>', views.getServiceStudents, name="getServiceStudents"),
 ]

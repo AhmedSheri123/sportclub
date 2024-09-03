@@ -15,4 +15,7 @@ urlpatterns = [
     #Blog
     path('viewArticles', views.viewArticles, name='viewArticles'),
     path('viewArticles/<int:id>', views.viewArticle, name='viewArticle'),
+
+    #OrderService
+    path('OrderService/<int:service_id>', views.OrderService, name='OrderService'),    
 ]

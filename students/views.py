@@ -1,8 +1,12 @@
-from django.shortcuts import render
-from .models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel, ProductsImage, ServicesImage
+from django.shortcuts import render, redirect
+from .models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel, ServiceOrderModel
 from django.contrib.auth.models import User
 from accounts.models import UserProfile, ClubsModel, CoachProfile, StudentProfile
 from coach_dashboard.models import StudentAppointmentPresenceModel
+from django.utils import timezone
+# from django.contrib import messages
+
+import datetime
 # Create your views here.
 
 def index(request):
@@ -60,3 +64,16 @@ def viewArticles(request):
 
 def viewArticle(request):
     return render(request, 'student/blog/viewArticle.html')
+
+
+def OrderService(request, service_id):
+    student = request.user
+    service = ServicesModel.objects.get(id=service_id)
+    orders = ServiceOrderModel.objects.filter(service=service, student=student).order_by('-id')
+    if orders.exists():
+        if orders.first().has_subscription():
+            return redirect('viewServicesSpecific', service_id)
+    end_datetime = datetime.timedelta(days=30) + timezone.now()
+    order = ServiceOrderModel.objects.create(service=service, student=student, price=service.price, is_complited=True, end_datetime=end_datetime, creation_date=timezone.now())
+    order.save()
+    return redirect('studentIndex')

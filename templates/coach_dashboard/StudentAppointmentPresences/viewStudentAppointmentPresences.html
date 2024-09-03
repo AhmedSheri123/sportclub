@@ -69,61 +69,42 @@
         <label
           for="student"
           class="block text-sm font-medium text-gray-700 mb-1"
-          >اسم الطالب</label
+          >الخدمة</label
         >
+        
         <select
-          name="student"
-          id="student"
+          name="service_id"
+          id="service"
           required
           class="w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          onchange="get_service_students()"
         >
-          {% for student in students %}
-          <option value="{{ student.id }}">{{ student.full_name }}</option>
+          {% for service in services %}
+          <option value="{{ service.id }}">{{ service.title }}</option>
           {% endfor %}
         </select>
       </div>
       <div class="mb-6">
         <label for="coach" class="block text-sm font-medium text-gray-700 mb-1"
-          >اسم المدرب</label
+          >الطالب</label
         >
         <select
-          name="coach"
-          id="coach"
+          name="student_id"
+          id="student"
           required
           class="w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
-          {% for coach in coaches %}
-          <option value="{{ coach.id }}">{{ coach.full_name }}</option>
-          {% endfor %}
+
+          
         </select>
       </div>
-      <div class="mb-6">
+      <div class="mb-4">
         <label
-          for="start_datetime"
+          for="appointement"
           class="block text-sm font-medium text-gray-700 mb-1"
-          >تاريخ البدء</label
+          >الموعد</label
         >
-        <input
-          type="datetime-local"
-          name="start_datetime"
-          id="start_datetime"
-          required
-          class="w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
-      </div>
-      <div class="mb-6">
-        <label
-          for="end_datetime"
-          class="block text-sm font-medium text-gray-700 mb-1"
-          >تاريخ الانتهاء</label
-        >
-        <input
-          type="datetime-local"
-          name="end_datetime"
-          id="end_datetime"
-          required
-          class="w-full px-3 py-2 border border-indigo-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        />
+        {{form.appointment}}
       </div>
       <div class="flex justify-end">
         <button
@@ -151,5 +132,24 @@
   document.getElementById("closeDialogButton").onclick = function () {
     document.getElementById("addAppointmentDialog").close();
   };
+
+
+  function get_service_students() {
+    let service = document.querySelector('#service')
+    let students = document.querySelector('#student')
+
+    students.querySelectorAll('option').forEach(el=>{
+      el.remove()
+    })
+
+    fetch(`/coach_dashboard/getServiceStudents/${service.value}`)
+    .then((response) => response.json())
+    .then((data) => {
+      data.forEach(el=>{
+      students.insertAdjacentHTML('afterbegin', `<option value="${el.user_id}">${el.full_name}</option>`)
+    })
+    });
+  }
+  get_service_students()
 </script>
 {% endblock %}

@@ -108,3 +108,5 @@ def EditClubProfile(request, id):
         if form.is_valid():
             form.save()
     return render(request, 'accounts/settings/Club/EditClubProfile.html', {'form':form})
+
+
