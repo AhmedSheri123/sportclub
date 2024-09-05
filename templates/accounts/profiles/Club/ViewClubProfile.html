@@ -12,9 +12,7 @@
             />
           </div>
           <div class="mr-6">
-            <h1 class="text-3xl font-bold text-gray-900">
-              {{club.name}}
-            </h1>
+            <h1 class="text-3xl font-bold text-gray-900">{{club.name}}</h1>
             <p class="text-xl text-gray-600">{{club.desc}}</p>
           </div>
         </div>
@@ -23,11 +21,10 @@
         <h3 class="text-lg leading-6 font-medium text-gray-900">
           نبذة عن النادي
         </h3>
-        <p class="mt-1 max-w-2xl text-sm text-gray-500">
-          {{club.about}}
-        </p>
+        <p class="mt-1 max-w-2xl text-sm text-gray-500">{{club.about}}</p>
       </div>
-      {% comment %} <div class="border-t border-gray-200">
+      {% comment %}
+      <div class="border-t border-gray-200">
         <dl>
           <div
             class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
@@ -54,8 +51,15 @@
             </dd>
           </div>
         </dl>
-      </div> {% endcomment %}
-      <div class="px-6 py-4 bg-gray-50 sm:px-10 flex justify-end">
+      </div>
+      {% endcomment %}
+      <div class="px-6 py-4 bg-gray-50 sm:px-10 flex justify-end gap-2">
+        <button
+          id="settingsButton"
+          class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+        >
+          الاعدادات
+        </button>
         <a
           href="{% url 'EditClubProfile' club.id %}"
           class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
@@ -66,4 +70,134 @@
     </div>
   </div>
 </div>
+
+<!-- Dialog for club settings -->
+<dialog id="settingsDialog" class="rounded-lg px-6 pt-6 w-11/12 md:w-1/3">
+  <h2 class="text-2xl font-bold mb-4">إعدادات النادي</h2>
+  <form method="post" class="py-6">
+    {% csrf_token %}
+    <div class="mb-6">
+      <label
+        for="allowBookings1"
+        class="flex items-center gap-2 cursor-pointer"
+      >
+        <div class="relative">
+          <input
+            type="checkbox"
+            id="allowBookings1"
+            name="allowBookings1"
+            class="sr-only"
+          />
+          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+          <div
+            class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
+          ></div>
+        </div>
+        <div class="mr-3 font-semibold text-lg text-gray-700">
+          السماح بالحجوزات 1
+        </div>
+      </label>
+    </div>
+    <div class="mb-6">
+      <label
+        for="allowBookings2"
+        class="flex items-center gap-2 cursor-pointer"
+      >
+        <div class="relative">
+          <input
+            type="checkbox"
+            id="allowBookings2"
+            name="allowBookings2"
+            class="sr-only"
+          />
+          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+          <div
+            class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
+          ></div>
+        </div>
+        <div class="mr-3 font-semibold text-lg text-gray-700">
+          السماح بالحجوزات 2
+        </div>
+      </label>
+    </div>
+    <div class="mb-6">
+      <label
+        for="allowBookings3"
+        class="flex items-center gap-2 cursor-pointer"
+      >
+        <div class="relative">
+          <input
+            type="checkbox"
+            id="allowBookings3"
+            name="allowBookings3"
+            class="sr-only"
+          />
+          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+          <div
+            class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
+          ></div>
+        </div>
+        <div class="mr-3 font-semibold text-lg text-gray-700">
+          السماح بالحجوزات 3
+        </div>
+      </label>
+    </div>
+    <div class="mb-6">
+      <label
+        for="allowBookings4"
+        class="flex items-center gap-2 cursor-pointer"
+      >
+        <div class="relative">
+          <input
+            type="checkbox"
+            id="allowBookings4"
+            name="allowBookings4"
+            class="sr-only"
+          />
+          <div class="block bg-gray-300 w-14 h-8 rounded-full"></div>
+          <div
+            class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"
+          ></div>
+        </div>
+        <div class="mr-3 font-semibold text-lg text-gray-700">
+          السماح بالحجوزات 4
+        </div>
+      </label>
+    </div>
+    <div class="flex justify-end">
+      <button
+        type="button"
+        id="closeDialogButton"
+        class="ml-2 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"
+      >
+        إغلاق
+      </button>
+      <button
+        type="submit"
+        class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700"
+      >
+        حفظ التغييرات
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  document.getElementById("settingsButton").onclick = function () {
+    document.getElementById("settingsDialog").showModal();
+  };
+  document.getElementById("closeDialogButton").onclick = function () {
+    document.getElementById("settingsDialog").close();
+  };
+</script>
+
+<style>
+  input:checked ~ .dot {
+    transform: translateX(100%);
+  }
+  input:checked ~ .block {
+    background-color: #4f46e5;
+  }
+</style>
+
 {% endblock %}
