@@ -134,12 +134,22 @@
                   <option>20</option>
                 </select>
               </div>
-              <a href="{% url 'OrderService' service.id %}"
+              {% if order.has_subscription %}
+              <a 
+                class="w-full sm:w-auto bg-gray-400 text-white py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+              >
+                <i class="fas fa-calendar-check mr-2"></i>
+                <span>انت مشترك بهذه الباقة</span>
+            </a>
+            {% else %}  
+            <a href="{% url 'OrderService' service.id %}"
                 class="w-full sm:w-auto bg-blue-600 text-white py-3 px-8 rounded-full hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
               >
                 <i class="fas fa-calendar-check mr-2"></i>
                 <span>احجز الآن</span>
             </a>
+
+            {% endif %}
             </div>
             <div class="text-right">
               <span class="text-sm text-gray-500">رمز الخدمة: TF2023-001</span>

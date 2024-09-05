@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Blog, ServicesModel, ServicesClassificationModel, ProductsModel, ProductsClassificationModel, ServiceOrderModel
 from django.contrib.auth.models import User
 from accounts.models import UserProfile, ClubsModel, CoachProfile, StudentProfile
-from coach_dashboard.models import StudentAppointmentPresenceModel
+from coach_dashboard.models import StudentAppointmentPresenceModel, CoachAppointmentsModel
 from django.utils import timezone
 # from django.contrib import messages
 
@@ -16,9 +16,11 @@ def index(request):
     club = student.club
     coaches = CoachProfile.objects.filter(club=club)
     students = StudentProfile.objects.filter(club=club)
-    appointments = StudentAppointmentPresenceModel.objects.filter(student=student)
-
-    return render(request, 'student/index.html', {'appointments':appointments, 'coaches':coaches, 'students':students, 'club':club})
+    services = []
+    service_orders = ServiceOrderModel.objects.filter(student=user)
+    for i in service_orders:services.append(i.service)
+    appointments = CoachAppointmentsModel.objects.filter(service__in=services)
+    return render(request, 'student/index.html', {'appointments':appointments, 'coaches':coaches, 'students':students, 'club':club, 'service_orders':service_orders})
 
 def viewProducts(request):
     user = request.user
@@ -52,8 +54,8 @@ def viewServicesSpecific(request, id):
     club = user.userprofile.student_profile.club
     service = ServicesModel.objects.get(id=id)
     services = ServicesModel.objects.filter(club=club)
-
-    return render(request, 'student/services/viewSpecific.html', {'service':service, 'services':services})
+    order = ServiceOrderModel.objects.filter(service=service, student=user).order_by('-id').first()
+    return render(request, 'student/services/viewSpecific.html', {'service':service, 'services':services, 'order':order})
 
 
 def viewArticles(request):
